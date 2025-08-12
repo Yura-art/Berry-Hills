@@ -19,6 +19,11 @@ public abstract class ObjetoLlevable : MonoBehaviour, IInteractuable
 
     public virtual void Interactuar(GameObject interactor)
     {
+
+        if (AudioManager.instance != null && AudioManager.instance.tomarObjeto != null)
+        {
+            AudioManager.instance.ReproducirSonido(AudioManager.instance.tomarObjeto);
+        }
         if (!siendoLlevado)
         {
             // Recoger el objeto

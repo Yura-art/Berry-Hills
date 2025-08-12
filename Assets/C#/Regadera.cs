@@ -16,6 +16,11 @@ public class Regadera : ObjetoLlevable
         {
             planta.RecibirAgua(1f);  // Llama al método de la planta para recibir 1 unidad de agua
             cantidadAgua -= 1f;      // Reduce la cantidad de agua en la regadera
+
+            if (AudioManager.instance != null && AudioManager.instance.regar != null)
+            {
+                AudioManager.instance.ReproducirSonido(AudioManager.instance.regar);
+            }
         }
         else
         {

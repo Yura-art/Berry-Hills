@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1995095830901885730}
   - component: {fileID: 3218369033974050543}
   - component: {fileID: 2990655190513836805}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Bananos C#
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f712a261c189a44acbe03c2b4873a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  siendoLlevado: 0
   aguaPorEtapa: 5
   etapaActual: 0
   etapaMaxima: 3
@@ -96,7 +97,7 @@ GameObject:
   - component: {fileID: 1466008653608669151}
   - component: {fileID: 4925890054831751082}
   - component: {fileID: 6815777145463225737}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Fases
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,10 +259,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4091792821388611644, guid: 29e0f6bc4811291448e9127739a19709,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 117214286460000749, guid: 29e0f6bc4811291448e9127739a19709,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 29e0f6bc4811291448e9127739a19709,
         type: 3}
       propertyPath: m_Name
       value: Arbol Banano Fase2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 29e0f6bc4811291448e9127739a19709,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 29e0f6bc4811291448e9127739a19709,
         type: 3}
@@ -352,6 +368,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4193574882863268305, guid: 2444bc5795e3a4e4d80482cc67fa5155,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -931099529991033196, guid: 2444bc5795e3a4e4d80482cc67fa5155,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2444bc5795e3a4e4d80482cc67fa5155,
         type: 3}
       propertyPath: m_Name
@@ -359,8 +385,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2444bc5795e3a4e4d80482cc67fa5155,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2444bc5795e3a4e4d80482cc67fa5155,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 922191709010230457, guid: 2444bc5795e3a4e4d80482cc67fa5155,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4380141290270590824, guid: 2444bc5795e3a4e4d80482cc67fa5155,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351371208247361421, guid: 2444bc5795e3a4e4d80482cc67fa5155,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877992790174843453, guid: 2444bc5795e3a4e4d80482cc67fa5155,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -446,6 +497,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 15ff8da6a6cc17445b8aa4fd7ce5ec8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 15ff8da6a6cc17445b8aa4fd7ce5ec8c,
         type: 3}
       propertyPath: m_Name
@@ -453,8 +509,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 15ff8da6a6cc17445b8aa4fd7ce5ec8c,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 15ff8da6a6cc17445b8aa4fd7ce5ec8c,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821623529969584324, guid: 15ff8da6a6cc17445b8aa4fd7ce5ec8c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -544,6 +610,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Arbol Banano Fase1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 34c80c1cc15950346b2f1bcaea69513e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 34c80c1cc15950346b2f1bcaea69513e,
         type: 3}

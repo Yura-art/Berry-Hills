@@ -53,6 +53,11 @@ public class CrecimientoPlanta : ObjetoLlevable
         // Actualiza parámetro en el Animator para cambiar animación
         animator.SetInteger("Etapa", etapaActual);
 
+        if (AudioManager.instance != null && AudioManager.instance.cosechar != null)
+        {
+            AudioManager.instance.ReproducirSonido(AudioManager.instance.cosechar);
+        }
+
         // Si alcanzó la etapa máxima, se convierte en objeto llevable
         if (etapaActual == etapaMaxima)
         {
