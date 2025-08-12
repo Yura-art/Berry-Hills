@@ -76,6 +76,10 @@ public class BolsaSemillas : ObjetoLlevable
 
         if (prefab != null)
         {
+            if (AudioManager.instance != null && AudioManager.instance.sembrar != null)
+            {
+                AudioManager.instance.ReproducirSonido(AudioManager.instance.sembrar);
+            }
             Instantiate(prefab, puntoSiembra.position, puntoSiembra.rotation);
             Debug.Log($"Sembraste: {tipoAsembrar}");
 
@@ -96,14 +100,26 @@ public class BolsaSemillas : ObjetoLlevable
             llevable.Soltar();
         }
 
+        // 🔹 Apagar animación de llevar
+        GameObject jugador = GameObject.FindGameObjectWithTag("Player");
+        if (jugador != null)
+        {
+            Animator anim = jugador.GetComponent<Animator>();
+            if (anim != null)
+            {
+                anim.SetBool("Interactuando", false); // o el nombre que uses para "cargando"
+            }
+        }
+
         // 2️⃣ Desactivar interacción momentáneamente para evitar conflictos
         Collider col = GetComponent<Collider>();
         if (col != null)
             col.enabled = false;
 
-        // 3️⃣ Esperar un momento antes de moverla (para que acabe animación de soltar)
+        // 3️⃣ Esperar un momento antes de moverla
         StartCoroutine(RecolocarDespuesDeSoltar());
     }
+
 
     private IEnumerator RecolocarDespuesDeSoltar()
     {

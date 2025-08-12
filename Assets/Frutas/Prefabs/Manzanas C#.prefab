@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1995095830901885730}
   - component: {fileID: 3218369033974050543}
   - component: {fileID: 2990655190513836805}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Manzanas C#
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f712a261c189a44acbe03c2b4873a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  siendoLlevado: 0
   aguaPorEtapa: 5
   etapaActual: 0
   etapaMaxima: 3
@@ -96,7 +97,7 @@ GameObject:
   - component: {fileID: 1466008653608669151}
   - component: {fileID: 4925890054831751082}
   - component: {fileID: 6815777145463225737}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Fases
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,6 +266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c56272c44ea8ae5429eccfe30b813736,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c56272c44ea8ae5429eccfe30b813736,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -352,6 +358,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4193574882863268305, guid: c9dbb8a23e6885d499f86f56e208e51a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -931099529991033196, guid: c9dbb8a23e6885d499f86f56e208e51a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c9dbb8a23e6885d499f86f56e208e51a,
         type: 3}
       propertyPath: m_Name
@@ -359,8 +375,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c9dbb8a23e6885d499f86f56e208e51a,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c9dbb8a23e6885d499f86f56e208e51a,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 922191709010230457, guid: c9dbb8a23e6885d499f86f56e208e51a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4380141290270590824, guid: c9dbb8a23e6885d499f86f56e208e51a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351371208247361421, guid: c9dbb8a23e6885d499f86f56e208e51a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877992790174843453, guid: c9dbb8a23e6885d499f86f56e208e51a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -446,10 +487,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4091792821388611644, guid: 53e121a20db4e844eb5982b47bfca017,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 117214286460000749, guid: 53e121a20db4e844eb5982b47bfca017,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 53e121a20db4e844eb5982b47bfca017,
         type: 3}
       propertyPath: m_Name
       value: Arbol Manzana Fase 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53e121a20db4e844eb5982b47bfca017,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 53e121a20db4e844eb5982b47bfca017,
         type: 3}
@@ -540,6 +596,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
         type: 3}
       propertyPath: m_Name
@@ -547,8 +613,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
         type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

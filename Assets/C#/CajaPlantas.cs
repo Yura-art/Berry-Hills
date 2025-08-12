@@ -63,6 +63,11 @@ public class CajaPlantas : MonoBehaviour, IInteractuable
                     llevable.Soltar();
                 }
 
+                if (AudioManager.instance != null && AudioManager.instance.guardarObjeto != null)
+                {
+                    AudioManager.instance.ReproducirSonido(AudioManager.instance.guardarObjeto);
+                }
+
                 Animator anim = interactor.GetComponent<Animator>();
                 if (anim != null)
                 {
@@ -98,6 +103,13 @@ public class CajaPlantas : MonoBehaviour, IInteractuable
             capacidadText.text = plantasGuardadas.Count + " / " + capacidadMaxima;
         }
     }
+
+    public void ReiniciarCaja()
+    {
+        plantasGuardadas.Clear(); // Elimina todas las plantas guardadas
+        texto(); // Actualiza el UI de capacidad
+    }
+
 
     public void xD()
     {

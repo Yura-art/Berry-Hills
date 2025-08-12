@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5182812510543295352}
   - component: {fileID: 1147219711566171303}
   - component: {fileID: 8402857533822264944}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Fases
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 3930586746199882540}
   - component: {fileID: 7980238679004984516}
   - component: {fileID: 8307290989791669050}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Cerezas C#
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f712a261c189a44acbe03c2b4873a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  siendoLlevado: 0
   aguaPorEtapa: 5
   etapaActual: 0
   etapaMaxima: 3
@@ -266,7 +267,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 86b1bdffe3e79e4488c76917ed153dce,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86b1bdffe3e79e4488c76917ed153dce,
         type: 3}
@@ -360,12 +361,12 @@ PrefabInstance:
     - target: {fileID: -4193574882863268305, guid: 36bdfb28030d03443857bf1190daba3f,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -931099529991033196, guid: 36bdfb28030d03443857bf1190daba3f,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 36bdfb28030d03443857bf1190daba3f,
         type: 3}
@@ -375,7 +376,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 36bdfb28030d03443857bf1190daba3f,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 36bdfb28030d03443857bf1190daba3f,
         type: 3}
@@ -385,22 +386,22 @@ PrefabInstance:
     - target: {fileID: 922191709010230457, guid: 36bdfb28030d03443857bf1190daba3f,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4380141290270590824, guid: 36bdfb28030d03443857bf1190daba3f,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6351371208247361421, guid: 36bdfb28030d03443857bf1190daba3f,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7877992790174843453, guid: 36bdfb28030d03443857bf1190daba3f,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -489,12 +490,12 @@ PrefabInstance:
     - target: {fileID: -4091792821388611644, guid: e3dd901bfd74e3045b2fc3dac6052276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 117214286460000749, guid: e3dd901bfd74e3045b2fc3dac6052276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e3dd901bfd74e3045b2fc3dac6052276,
         type: 3}
@@ -504,7 +505,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e3dd901bfd74e3045b2fc3dac6052276,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e3dd901bfd74e3045b2fc3dac6052276,
         type: 3}
@@ -603,7 +604,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 36a7a90d85393e040b2d287c11e2ba21,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 36a7a90d85393e040b2d287c11e2ba21,
         type: 3}
