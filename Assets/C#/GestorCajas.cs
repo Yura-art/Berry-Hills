@@ -1,112 +1,111 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class Fase
+{
+    public string nombre;
+    public List<GameObject> activar;
+    public List<GameObject> desactivar;
+    public int cajasNecesarias = 1;
+    public bool esFaseFinal = false;
+}
 
 public class GestorCajas : MonoBehaviour
 {
+    [Header("Cajas")]
+    public List<CajaPlantas> cajas = new List<CajaPlantas>();
 
-    [Header ("Cajas")]
-    public CajaPlantas caja1;
-    public CajaPlantas caja2;
-    public CajaPlantas caja3;
-    public CajaPlantas caja4;
-    public CajaPlantas caja5;
-    public CajaPlantas caja6;
+    [Header("Fases del juego")]
+    public List<Fase> fases = new List<Fase>();
 
-    [Header("Frutas")]
-    public GameObject bananos;
-    public GameObject cerezas;
+    [Header("Tiempo")]
+    public ControlTiempo controlTiempo;
 
-    [Header ("Personajes")]
-    public GameObject oveja;
-    public GameObject lobo;
+    [Header("UI")]
+    public GameObject panelGanaste;
 
-    [Header("Camaras")]
-    public GameObject camara1;
-    public GameObject camara2;
+    [Header("Audio")]
+    public AudioSource musicaFondo; // 🎵 referencia al audio de fondo
 
-    public GameObject Ganaste;
+    private int faseActual = 0;
 
     private void Start()
     {
-        // ✅ Asignamos este gestor a cada caja
-        caja1.gestor = this;
-        caja2.gestor = this;
-        caja3.gestor = this;
-        caja4.gestor = this;
-        caja5.gestor = this;
-        caja6.gestor = this;
+        // Asignar gestor a cada caja
+        foreach (var caja in cajas)
+        {
+            caja.gestor = this;
+        }
 
-        oveja.SetActive(true);
-        lobo.SetActive(false);
+        panelGanaste.SetActive(false);
 
-        camara1.SetActive(true);
-        camara2.SetActive(false);
-
-        Ganaste.SetActive(false);
+        if (controlTiempo != null)
+            controlTiempo.IniciarTiempo();
     }
 
-    // ✅ Llamado por cada caja cuando se llena
     public void VerificarCajasLlenas()
     {
-        // Fase 1 → Bananos
-        if (caja1.EstaLlena && !bananos.activeSelf)
+        if (faseActual >= fases.Count) return;
+
+        int cajasLlenas = 0;
+        foreach (var caja in cajas)
         {
-            ActivarBananos();
-            ReiniciarTodasLasCajas();
-            return; // Salimos para evitar que se chequee lo siguiente
+            if (caja.EstaLlena) cajasLlenas++;
         }
 
-        // Fase 2 → Cerezas
-        if (caja1.EstaLlena && caja2.EstaLlena && !cerezas.activeSelf)
+        // Si se cumplen las cajas necesarias para la fase
+        if (cajasLlenas >= fases[faseActual].cajasNecesarias)
         {
-            ActivarCerezas();
-            ReiniciarTodasLasCajas();
-            return;
-        }
+            EjecutarFase(fases[faseActual]);
 
-        // Fase 3 → Cambio de personajes y cámaras
-        if (caja1.EstaLlena && caja2.EstaLlena && caja3.EstaLlena)
-        {
-            PasarASiguienteFase();
+            // Si era la última fase real (fase final marcada), no seguimos
+            if (fases[faseActual].esFaseFinal)
+                return;
+
+            faseActual++;
+            controlTiempo.Ganar();
             ReiniciarTodasLasCajas();
+            controlTiempo.IniciarTiempo();
         }
     }
 
-
-    private void PasarASiguienteFase()
+    private void EjecutarFase(Fase fase)
     {
-        oveja.SetActive(false);
-        lobo.SetActive(true);
+        Debug.Log($"▶ Ejecutando fase: {fase.nombre}");
 
-        camara1.SetActive(false);
-        camara2.SetActive(true);
+        // Activar objetos
+        foreach (var obj in fase.activar)
+        {
+            if (obj != null) obj.SetActive(true);
+        }
 
-        if (caja4.EstaLlena && lobo)
+        // Desactivar objetos
+        foreach (var obj in fase.desactivar)
+        {
+            if (obj != null) obj.SetActive(false);
+        }
+
+        // Solo mostrar Ganaste si esta fase está marcada como final
+        if (fase.esFaseFinal)
         {
             Time.timeScale = 0f;
-            Ganaste.SetActive(true);
+            panelGanaste.SetActive(true);
+            controlTiempo.DetenerTiempo();
+
+            // 🎵 Parar la música si está sonando
+            if (musicaFondo != null && musicaFondo.isPlaying)
+            {
+                musicaFondo.Stop();
+            }
         }
-    }
-
-    void ActivarBananos()
-    {
-        bananos.SetActive(true);
-        Debug.Log("✅ Bananos desbloqueados");
-    }
-
-    void ActivarCerezas()
-    {
-        cerezas.SetActive(true);
-        Debug.Log("✅ Cerezas desbloqueadas");
     }
 
     public void ReiniciarTodasLasCajas()
     {
-        caja1.ReiniciarCaja();
-        caja2.ReiniciarCaja();
-        caja3.ReiniciarCaja();
-        caja4.ReiniciarCaja();
-        caja5.ReiniciarCaja();
-        caja6.ReiniciarCaja();
+        foreach (var caja in cajas)
+        {
+            caja.ReiniciarCaja();
+        }
     }
-
 }

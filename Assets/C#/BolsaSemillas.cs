@@ -80,7 +80,7 @@ public class BolsaSemillas : ObjetoLlevable
             {
                 AudioManager.instance.ReproducirSonido(AudioManager.instance.sembrar);
             }
-            Instantiate(prefab, puntoSiembra.position, puntoSiembra.rotation);
+            Instantiate(prefab, puntoSiembra.position, Quaternion.identity);
             Debug.Log($"Sembraste: {tipoAsembrar}");
 
             // Marcar como sembrado

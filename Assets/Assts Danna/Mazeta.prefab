@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 911202055459295163}
   - component: {fileID: 1459027128268158421}
   - component: {fileID: 5187867854948479232}
-  - component: {fileID: 3675807026652182251}
-  m_Layer: 6
+  - component: {fileID: 7342161008099125017}
+  m_Layer: 3
   m_Name: Mazeta
   m_TagString: ZonaSiembra
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3675807026652182251
+--- !u!65 &7342161008099125017
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

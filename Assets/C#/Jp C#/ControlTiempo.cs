@@ -1,88 +1,92 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+ï»¿using UnityEngine;
+using TMPro;
 
 public class ControlTiempo : MonoBehaviour
 {
-    public float tiempoMaximo = 60f; // Tiempo inicial de la fase
+    public float[] tiemposPorFase;
+    private int faseActual = 0;
+
     private float tiempoRestante;
+    private bool enCuentaAtras = false;
 
-    private int faseActual = 1;
+    public TMP_Text textoTiempo;
+    public TMP_Text textoPuntaje;
 
-    private bool juegoTerminado = false;
+    public GameObject panelPerdiste;
 
-    void Start()
+    private int puntajeTotal = 0;
+
+    private void Start()
     {
-        tiempoRestante = tiempoMaximo;
+        IniciarTiempo();
+        MostrarPuntaje();
+        panelPerdiste.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
-        if (juegoTerminado) return;
+        if (!enCuentaAtras) return;
 
-        if (tiempoRestante > 0)
+        tiempoRestante -= Time.deltaTime;
+
+        if (tiempoRestante <= 0)
         {
-            tiempoRestante -= Time.deltaTime;
+            tiempoRestante = 0;
+            enCuentaAtras = false;
+            Perder();
+        }
 
-            if (Input.GetKeyDown(KeyCode.G)) 
-            {
-                Ganar();
-            }
+        MostrarTiempo();
+    }
 
-            if (tiempoRestante <= 0)
-            {
-                tiempoRestante = 0;
-                Perder();
-            }
+    public void IniciarTiempo()
+    {
+        if (faseActual < tiemposPorFase.Length)
+            tiempoRestante = tiemposPorFase[faseActual];
+        else
+            tiempoRestante = tiemposPorFase[tiemposPorFase.Length - 1];
+
+        enCuentaAtras = true;
+        MostrarTiempo();
+    }
+
+    public void DetenerTiempo()
+    {
+        enCuentaAtras = false;
+    }
+
+    public void Ganar()
+    {
+        int puntosFase = Mathf.CeilToInt(tiempoRestante);
+        puntajeTotal += puntosFase;
+
+        MostrarPuntaje();
+        DetenerTiempo();
+
+        faseActual++;
+        IniciarTiempo();
+    }
+
+    private void Perder()
+    {
+        panelPerdiste.SetActive(true);
+        Time.timeScale = 0f;
+
+    }
+
+    private void MostrarTiempo()
+    {
+        if (textoTiempo != null)
+        {
+            textoTiempo.text = Mathf.CeilToInt(tiempoRestante).ToString();
         }
     }
 
-    // Llama esta función cuando el jugador realiza la tarea correctamente
-    public void Ganar()
+    private void MostrarPuntaje()
     {
-        juegoTerminado = true;
-        int puntaje = Mathf.CeilToInt(tiempoRestante);
-        Debug.Log("¡Ganaste! Puntaje: " + puntaje);
-
-        // Preparar siguiente fase
-        SiguienteFase();
-    }
-
-    void Perder()
-    {
-        juegoTerminado = true;
-        Debug.Log("Se acabó el tiempo. Perdiste.");
-
-        // Reiniciar o terminar el juego
-        ReiniciarFase();
-    }
-
-    void SiguienteFase()
-    {
-        faseActual++;
-
-        // Puedes cambiar el tiempo para la siguiente fase como quieras
-        // Por ejemplo, disminuir tiempo cada fase
-        tiempoMaximo = Mathf.Max(10f, tiempoMaximo - 5f);
-
-        ReiniciarFase();
-    }
-
-    void ReiniciarFase()
-    {
-        tiempoRestante = tiempoMaximo;
-        juegoTerminado = false;
-
-        // Aquí podrías cargar una nueva escena o resetear elementos para la nueva fase
-        // Por ejemplo, si quieres cambiar de escena:
-        // SceneManager.LoadScene("NombreDeLaEscenaDeLaFase" + faseActual);
-
-        Debug.Log("Fase " + faseActual + " iniciada con tiempo: " + tiempoMaximo);
-    }
-
-    // Opcional: método para obtener tiempo restante o puntaje actual
-    public float GetTiempoRestante()
-    {
-        return tiempoRestante;
+        if (textoPuntaje != null)
+        {
+            textoPuntaje.text = puntajeTotal.ToString();
+        }
     }
 }

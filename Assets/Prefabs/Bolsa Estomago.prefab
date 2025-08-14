@@ -153,9 +153,8 @@ MonoBehaviour:
     type: 3}
   prefabBananos: {fileID: 271282136744297152, guid: 2e4d5689f40c79a4abb3b7bd70a2c756,
     type: 3}
-  prefabManzanas: {fileID: 271282136744297152, guid: 2fb10b441dbb5da44818004431de71b0,
+  prefabManzanas: {fileID: 271282136744297152, guid: 89e5764808c722a4192b5699ff8765b1,
     type: 3}
-  bolsa: {fileID: 0}
 --- !u!1001 &5309356854929514729
 PrefabInstance:
   m_ObjectHideFlags: 0

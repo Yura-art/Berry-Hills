@@ -39,21 +39,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 477167379833899489, guid: 83790ff9dbc9f27469947aad642a9110,
-        type: 3}
-      propertyPath: tamanoDeteccion.x
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 477167379833899489, guid: 83790ff9dbc9f27469947aad642a9110,
-        type: 3}
-      propertyPath: tamanoDeteccion.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 477167379833899489, guid: 83790ff9dbc9f27469947aad642a9110,
-        type: 3}
-      propertyPath: tamanoDeteccion.z
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3265ef502caa97645a7d64f3670f31e8,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -119,15 +104,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2466741665685069695, guid: 3265ef502caa97645a7d64f3670f31e8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3265ef502caa97645a7d64f3670f31e8,
         type: 3}
       propertyPath: m_Name
-      value: lobo Anim
+      value: Jugador Lobo
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3265ef502caa97645a7d64f3670f31e8,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 477167379833899489, guid: 83790ff9dbc9f27469947aad642a9110,
+        type: 3}
+      propertyPath: tamanoDeteccion.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 477167379833899489, guid: 83790ff9dbc9f27469947aad642a9110,
+        type: 3}
+      propertyPath: tamanoDeteccion.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 477167379833899489, guid: 83790ff9dbc9f27469947aad642a9110,
+        type: 3}
+      propertyPath: tamanoDeteccion.z
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -247,12 +252,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f46ce3d920891f4baf3ebc1a0a88d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textoInteractuar: {fileID: 0}
   centroDeteccion: {fileID: 2176519428350360214}
   tamanoDeteccion: {x: 3, y: 4, z: 4}
   capaInteraccion:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   puntoCarga: {fileID: 2176519428350360214}
 --- !u!114 &175031656185982137
 MonoBehaviour:

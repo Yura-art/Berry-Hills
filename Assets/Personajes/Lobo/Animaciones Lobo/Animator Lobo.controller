@@ -144,6 +144,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: Interactuando
     m_EventTreshold: 0
+  - m_ConditionMode: 3
+    m_ConditionEvent: Velocidad
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8340895763705149298}
   m_Solo: 0
@@ -248,6 +251,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: Interactuando
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: Corriendo
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4827329364825896948}
