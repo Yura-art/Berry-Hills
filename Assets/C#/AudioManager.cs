@@ -13,10 +13,13 @@ public class AudioManager : MonoBehaviour
     [Header("Clips")]
     public AudioClip tomarObjeto;
     public AudioClip regar;
-    public AudioClip recolectarAgua;
+    //public AudioClip recolectarAgua;
     public AudioClip cosechar;
     public AudioClip guardarObjeto;
     public AudioClip sembrar;
+
+    [Header("Audio Sources especiales")]
+    public AudioSource fuenteAgua;
 
     void Awake()
     {
@@ -59,4 +62,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    //Jp estuvo aqui jsjs para árreglar el sonido en loop de la recarga
+    public void ReproducirFuenteAgua()
+    {
+        if (fuenteAgua != null && !fuenteAgua.isPlaying)
+            fuenteAgua.Play();
+    }
+
+    public void DetenerFuenteAgua()
+    {
+        if (fuenteAgua != null && fuenteAgua.isPlaying)
+            fuenteAgua.Stop();
+    }
 }

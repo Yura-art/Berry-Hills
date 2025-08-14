@@ -724,8 +724,8 @@ MonoBehaviour:
     Yurani
     Valencia        UX/UI'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 65fdd3918f38aec41be724da9d0d539d, type: 2}
-  m_sharedMaterial: {fileID: -6211528935324573784, guid: 65fdd3918f38aec41be724da9d0d539d,
+  m_fontAsset: {fileID: 11400000, guid: d626888bd63d08f45af2d17c4a7492ec, type: 2}
+  m_sharedMaterial: {fileID: -2271310758841936679, guid: d626888bd63d08f45af2d17c4a7492ec,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

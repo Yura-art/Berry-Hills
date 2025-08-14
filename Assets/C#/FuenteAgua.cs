@@ -34,9 +34,10 @@ public class FuenteAgua : MonoBehaviour, IInteractuable
             regadera.cantidadAgua += cantidadRecarga;
             Debug.Log($"Regadera recargada. Agua actual: {regadera.cantidadAgua}");
 
-            if (AudioManager.instance != null && AudioManager.instance.recolectarAgua != null)
+            //Jp estuvo aqui jsjs para árreglar el sonido en loop de la recarga
+            if (AudioManager.instance != null)
             {
-                AudioManager.instance.ReproducirSonido(AudioManager.instance.recolectarAgua);
+                AudioManager.instance.ReproducirFuenteAgua();
             }
 
             // Inicia el cooldown
@@ -72,6 +73,12 @@ public class FuenteAgua : MonoBehaviour, IInteractuable
 
         if (textoCooldown != null)
             textoCooldown.gameObject.SetActive(false);
+
+        //Jp estuvo aqui jsjs para árreglar el sonido en loop de la recarga
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.DetenerFuenteAgua();
+        }
 
         enCooldown = false;
     }
