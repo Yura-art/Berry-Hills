@@ -23,5 +23,4 @@ public class UIManagerMensajes : MonoBehaviour
             textoMensajes.text = mensajeFormateado;
         }
     }
-
 }
