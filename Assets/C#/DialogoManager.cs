@@ -75,5 +75,6 @@ public class DialogoManager : MonoBehaviour
     {
         panelDialogo.SetActive(false);
         Debug.Log("📖 Diálogo terminado");
+        UIManagerMensajes.instance.MostrarMensaje("");
     }
 }

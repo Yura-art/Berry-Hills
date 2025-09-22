@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource caminar;        // Pasos en loop (Play / Stop)
     public AudioSource correr;
     public AudioSource boton;          // Para sonidos de botones
+    public AudioSource Llamada;
 
     [Header("Clips")]
     public AudioClip tomarObjeto;
@@ -24,6 +25,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip botonClick;
     public AudioClip botonHover;
     public AudioClip sonidoDialogo;
+    public AudioClip sonidoLlamada;
 
     [Header("Audio Sources especiales")]
     public AudioSource fuenteAgua;
@@ -100,6 +102,23 @@ public class AudioManager : MonoBehaviour
         if (sonidoDialogo != null && efectos != null)
         {
             efectos.PlayOneShot(sonidoDialogo);
+        }
+    }
+
+    public void ReproducirLlamada()
+    {
+        if (sonidoLlamada != null)
+        {
+            Llamada.clip = sonidoLlamada;
+            Llamada.Play();
+        }
+    }
+    public void CerrarLlamada()
+    {
+        if (sonidoLlamada != null)
+        {
+            Llamada.clip = sonidoLlamada;
+            Llamada.Stop();
         }
     }
 }

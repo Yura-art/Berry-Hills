@@ -2,11 +2,9 @@
 
 public class Llamada : MonoBehaviour
 {
-    public AudioClip sonidoLlamada;
     private bool enLlamadaEntrante = false;
 
     private float volumenOriginal; // Para guardar el volumen de la música
-    private float volumenOriginal2; // Para guardar el volumen de la música
 
     void Start()
     {
@@ -29,15 +27,14 @@ public class Llamada : MonoBehaviour
         if (AudioManager.instance.musicaFondo != null)
         {
             volumenOriginal = AudioManager.instance.musicaFondo.volume;
-            AudioManager.instance.musicaFondo.volume = 0.2f; // volumen reducido
+            AudioManager.instance.musicaFondo.volume = 0.05f; // volumen reducido
         }
 
         // Reproducir sonido de llamada
-        AudioManager.instance.ReproducirSonido(sonidoLlamada);
-        volumenOriginal2 = AudioManager.instance.efectos.volume;
-        AudioManager.instance.efectos.volume = 0.2f;
-        AudioManager.instance.efectos.loop = true;
-
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.ReproducirLlamada();
+        }
         UIManagerMensajes.instance.MostrarMensaje("Llamada entrante. Presiona [Q] para contestar");
     }
 
@@ -45,16 +42,15 @@ public class Llamada : MonoBehaviour
     {
         enLlamadaEntrante = false;
 
-        // Detener sonido de llamada
-        AudioManager.instance.efectos.Stop();
-        AudioManager.instance.efectos.loop = false;
-        AudioManager.instance.efectos.volume = volumenOriginal2;
-
-
         // Restaurar volumen original
         if (AudioManager.instance.musicaFondo != null)
         {
             AudioManager.instance.musicaFondo.volume = volumenOriginal;
+        }
+
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.CerrarLlamada();
         }
 
         UIManagerMensajes.instance.MostrarMensaje("Llamada contestada");

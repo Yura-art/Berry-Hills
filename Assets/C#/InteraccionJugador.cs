@@ -38,7 +38,7 @@ public class InteraccionJugador : MonoBehaviour
 
         // Interacción con click izquierdo con raycast
 
-        if (Input.GetMouseButtonDown(0) && interactuableActual != null)
+        if (Input.GetKeyDown(KeyCode.F) && interactuableActual != null)
         {
             interactuableActual.InteractuarClick(gameObject);
         }
