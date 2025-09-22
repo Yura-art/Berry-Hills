@@ -1,39 +1,54 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
     [Header("Audio Sources")]
-    public AudioSource musicaFondo;    // Música de fondo en loop
+    public AudioSource musicaFondo;    // MÃºsica de fondo en loop
     public AudioSource efectos;        // Efectos puntuales (PlayOneShot)
-    public AudioSource caminar;      // Pasos en loop (Play / Stop)
+    public AudioSource caminar;        // Pasos en loop (Play / Stop)
     public AudioSource correr;
+    public AudioSource boton;          // Para sonidos de botones
 
     [Header("Clips")]
     public AudioClip tomarObjeto;
     public AudioClip regar;
-    //public AudioClip recolectarAgua;
     public AudioClip cosechar;
     public AudioClip guardarObjeto;
     public AudioClip sembrar;
+    public AudioClip peridico;
+
+
+    [Header("UI Clips")]
+    public AudioClip botonClick;
+    public AudioClip botonHover;
+    public AudioClip sonidoDialogo;
 
     [Header("Audio Sources especiales")]
     public AudioSource fuenteAgua;
 
     void Awake()
     {
-
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Mantener entre escenas
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); // Evitar duplicados
+            Destroy(gameObject);
         }
     }
+    void Start()
+    {
+        if (musicaFondo != null && !musicaFondo.isPlaying)
+        {
+            musicaFondo.loop = true;
+            musicaFondo.Play();
+        }
+    }
+
     void Update()
     {
         if (musicaFondo != null && !musicaFondo.isPlaying)
@@ -43,17 +58,6 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    void Start()
-    {
-        // Iniciar música si no está sonando
-        if (musicaFondo != null && !musicaFondo.isPlaying)
-        {
-            musicaFondo.loop = true;
-            musicaFondo.Play();
-
-        }
-    }
-
     public void ReproducirSonido(AudioClip clip)
     {
         if (clip != null && efectos != null)
@@ -62,7 +66,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    //Jp estuvo aqui jsjs para árreglar el sonido en loop de la recarga
     public void ReproducirFuenteAgua()
     {
         if (fuenteAgua != null && !fuenteAgua.isPlaying)
@@ -73,5 +76,30 @@ public class AudioManager : MonoBehaviour
     {
         if (fuenteAgua != null && fuenteAgua.isPlaying)
             fuenteAgua.Stop();
+    }
+
+    public void ReproducirBotonClick()
+    {
+        if (boton != null && botonClick != null)
+        {
+            boton.clip = botonClick;
+            boton.Play();
+        }
+    }
+
+    public void ReproducirBotonHover()
+    {
+        if (boton != null && botonHover != null)
+        {
+            boton.clip = botonHover;
+            boton.Play();
+        }
+    }
+    public void ReproducirDialogo()
+    {
+        if (sonidoDialogo != null && efectos != null)
+        {
+            efectos.PlayOneShot(sonidoDialogo);
+        }
     }
 }
