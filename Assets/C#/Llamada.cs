@@ -6,9 +6,11 @@ public class Llamada : MonoBehaviour
 
     private float volumenOriginal; // Para guardar el volumen de la música
 
+    public float tiempoParaIniciar = 5f;
+
     void Start()
     {
-        IniciarLlamada();
+        Invoke(nameof(IniciarLlamada), tiempoParaIniciar);
     }
 
     void Update()

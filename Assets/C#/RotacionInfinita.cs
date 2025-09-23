@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RotacionInfinitaSegura : MonoBehaviour
+public class RotacionInfinita : MonoBehaviour
 {
     [Header("Referencia al objeto que se va a rotar")]
     public Transform objetoVisual; // Arrastra aquí el modelo o mesh en el inspector

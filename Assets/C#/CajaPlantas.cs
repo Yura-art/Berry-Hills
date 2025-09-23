@@ -22,7 +22,7 @@ public class CajaPlantas : MonoBehaviour, IInteractuable
     }
 
     // ✅ Referencia al gestor para avisar cuando se llene
-    public GestorCajas gestor;
+    public CajasManager gestor;
 
     private void Start()
     {
