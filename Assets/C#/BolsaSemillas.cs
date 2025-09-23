@@ -15,7 +15,7 @@ public class BolsaSemillas : ObjetoLlevable
     private bool enZonaSiembra = false;
     private bool yaSembrado = false;
 
-    // 🔹 Posición original para resetear la bolsa
+    //Posición original para resetear la bolsa
     private Vector3 posicionInicial;
     private Quaternion rotacionInicial;
     private Transform padreInicial;
@@ -47,15 +47,15 @@ public class BolsaSemillas : ObjetoLlevable
 
     public void Sembrar()
     {
-        if (!enZonaSiembra || puntoSiembra == null)
+        if (!enZonaSiembra && puntoSiembra == null)
         {
-            Debug.Log("No estás en una zona de siembra.");
+            UIManagerMensajes.instance.MostrarAdvertencia("No estas en una zona de siembra");
             return;
         }
 
         if (yaSembrado)
         {
-            Debug.Log("Ya sembraste, pero se reiniciará.");
+            UIManagerMensajes.instance.MostrarAdvertencia("Sembraste");
             return;
         }
 
@@ -80,7 +80,8 @@ public class BolsaSemillas : ObjetoLlevable
                 AudioManager.instance.ReproducirSonido(AudioManager.instance.sembrar);
             }
             Instantiate(prefab, puntoSiembra.position, Quaternion.identity);
-            Debug.Log($"Sembraste: {tipoAsembrar}");
+            //Debug.Log($"Sembraste: {tipoAsembrar}");
+            UIManagerMensajes.instance.MostrarAdvertencia($"Sembraste: {tipoAsembrar}");
 
             // Marcar como sembrado
             yaSembrado = true;

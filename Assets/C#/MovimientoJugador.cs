@@ -7,6 +7,7 @@ public class MovimientoJugador : MonoBehaviour
     public float velocidadCorrer = 8f;
     private Rigidbody rb;
     private Animator animator;
+    public bool puedeMover = true;
 
     void Start()
     {
@@ -16,8 +17,19 @@ public class MovimientoJugador : MonoBehaviour
 
     void Update()
     {
-        Mover();
-        RotarSegunMovimiento();
+        if (puedeMover)
+        {
+            Mover();
+            RotarSegunMovimiento();
+        }
+        else
+        {
+            // Detener al jugador si no puede moverse
+            rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+            animator.SetFloat("Velocidad", 0f);
+            animator.SetBool("Corriendo", false);
+            DetenerSonidos();
+        }
     }
 
     void Mover()
@@ -30,12 +42,7 @@ public class MovimientoJugador : MonoBehaviour
         // Si no hay movimiento
         if (direccion.magnitude < 0.1f)
         {
-            animator.SetFloat("Velocidad", 0f);
-            animator.SetBool("Corriendo", false);
-            rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
-
-            DetenerSonidos();
-            return;
+            BloquearMovimiento();
         }
 
         // Determinar si está corriendo
@@ -87,5 +94,15 @@ public class MovimientoJugador : MonoBehaviour
             aDetener.Stop();
             aReproducir.Play();
         }
+    }
+
+    public void BloquearMovimiento()
+    {
+        animator.SetFloat("Velocidad", 0f);
+        animator.SetBool("Corriendo", false);
+        rb.velocity = new Vector3(0f, rb.velocity.y, 0f);
+
+        DetenerSonidos();
+        return;
     }
 }

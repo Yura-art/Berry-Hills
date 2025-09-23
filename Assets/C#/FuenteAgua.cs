@@ -1,11 +1,11 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections;
 using TMPro;
 
 public class FuenteAgua : MonoBehaviour, IInteractuable
 {
     [Header("Recarga de Agua")]
-    public float cantidadRecarga = 10f; // Cuánta agua añade a la regadera
+    public float cantidadRecarga = 10f; // CuÃ¡nta agua aÃ±ade a la regadera
     public float tiempoRecarga = 5f;    // Segundos que tarda en poder usarse otra vez
 
     [Header("UI")]
@@ -15,14 +15,14 @@ public class FuenteAgua : MonoBehaviour, IInteractuable
 
     public void Interactuar(GameObject interactor)
     {
-        // No usamos interacción por tecla en este caso
+        // No usamos interacciÃ³n por tecla en este caso
     }
 
     public void InteractuarClick(GameObject interactor)
     {
         if (enCooldown)
         {
-            Debug.Log("La fuente está recargando, espera...");
+            Debug.Log("La fuente estÃ¡ recargando, espera...");
             return;
         }
 
@@ -31,9 +31,11 @@ public class FuenteAgua : MonoBehaviour, IInteractuable
         if (regadera != null)
         {
             regadera.cantidadAgua += cantidadRecarga;
-            Debug.Log($"Regadera recargada. Agua actual: {regadera.cantidadAgua}");
+            //Debug.Log($"Regadera recargada. Agua actual: {regadera.cantidadAgua}");
+            UIManagerMensajes.instance.MostrarAdvertencia($"Regadera recargada. Agua actual: {regadera.cantidadAgua}");
 
-            //Jp estuvo aqui jsjs para árreglar el sonido en loop de la recarga
+
+            //Jp estuvo aqui jsjs para Ã¡rreglar el sonido en loop de la recarga
             if (AudioManager.instance != null)
             {
                 AudioManager.instance.ReproducirFuenteAgua();
@@ -58,6 +60,10 @@ public class FuenteAgua : MonoBehaviour, IInteractuable
         enCooldown = true;
         float tiempoRestante = tiempoRecarga;
 
+        // ðŸ”¹ Bloquear movimiento del jugador
+        MovimientoJugador mov = FindObjectOfType<MovimientoJugador>();
+        if (mov != null) mov.puedeMover = false;
+
         if (textoCooldown != null)
             textoCooldown.gameObject.SetActive(true);
 
@@ -73,11 +79,14 @@ public class FuenteAgua : MonoBehaviour, IInteractuable
         if (textoCooldown != null)
             textoCooldown.gameObject.SetActive(false);
 
-        //Jp estuvo aqui jsjs para árreglar el sonido en loop de la recarga
+        //Jp estuvo aqui jsjs para Ã¡rreglar el sonido en loop de la recarga
         if (AudioManager.instance != null)
         {
             AudioManager.instance.DetenerFuenteAgua();
         }
+
+        // ðŸ”¹ Restaurar movimiento del jugador
+        if (mov != null) mov.puedeMover = true;
 
         enCooldown = false;
     }

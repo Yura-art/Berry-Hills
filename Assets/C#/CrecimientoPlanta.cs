@@ -1,21 +1,30 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
 public class CrecimientoPlanta : ObjetoLlevable
 {
-    private Regadera regaderaEnZona;      // Referencia a la regadera si está en zona de la planta
-    private float agua = 0f;              // Cantidad de agua acumulada para el crecimiento
+    private Regadera regaderaEnZona;
+    private float agua = 0f;
 
-    public float aguaPorEtapa = 5f;      // Agua necesaria para avanzar una etapa de crecimiento
+    [Header("Crecimiento")]
+    public float aguaPorEtapa = 5f;
+    public int etapaActual = 0;
+    public int etapaMaxima = 3;
+    public Animator animator;
 
-    public int etapaActual = 0;           // Etapa actual de crecimiento de la planta
-    public int etapaMaxima = 3;           // Etapa máxima que puede alcanzar
-    public Animator animator;             // Animator para controlar animaciones de crecimiento
+    [Header("Cooldown entre fases")]
+    public float tiempoEsperaEntreFases = 3f; // 🔹 Segundos de espera antes de poder regar otra vez
+    public GameObject objetoEspera;           // 🔹 Objeto que se activa mientras espera
+
+    private bool enCooldown = false; // 🔹 Evita regar durante la espera
 
     private void Start()
     {
         puedeCargar = false;
+        if (objetoEspera != null)
+            objetoEspera.SetActive(false);
     }
+
     public override void xD()
     {
         Debug.Log("Crecimiento planta");
@@ -23,34 +32,30 @@ public class CrecimientoPlanta : ObjetoLlevable
 
     public override void InteractuarClick(GameObject interactor)
     {
-        // Cuando se hace click para interactuar, se intenta regar si hay regadera en zona
         if (regaderaEnZona != null)
         {
-            regaderaEnZona.Regar(this);   // Llama al método Regar de la regadera, pasándole esta planta
+            regaderaEnZona.Regar(this);
         }
     }
 
     public void RecibirAgua(float cantidad)
     {
-        // Si la planta ya está en etapa máxima, no hace nada
         if (etapaActual >= etapaMaxima) return;
+        if (enCooldown) return; // 🔹 Ignora el riego si está en espera
 
-        agua += cantidad;  // Acumula la cantidad de agua recibida
+        agua += cantidad;
 
-        // Mientras haya suficiente agua para avanzar etapas, crece
         if (agua >= aguaPorEtapa && etapaActual < etapaMaxima)
         {
-            agua = 0;  // Resta el agua usada para crecer
-            Crecer();              // Llama al método para avanzar etapa
+            agua = 0;
+            Crecer();
+            StartCoroutine(CooldownEntreFases()); // 🔹 Inicia espera después de crecer
         }
     }
 
     private void Crecer()
     {
-        // Incrementa la etapa actual sin pasarse del máximo permitido
         etapaActual = Mathf.Min(etapaActual + 1, etapaMaxima);
-
-        // Actualiza parámetro en el Animator para cambiar animación
         animator.SetInteger("Etapa", etapaActual);
 
         if (AudioManager.instance != null && AudioManager.instance.cosechar != null)
@@ -58,62 +63,61 @@ public class CrecimientoPlanta : ObjetoLlevable
             AudioManager.instance.ReproducirSonido(AudioManager.instance.cosechar);
         }
 
-        // Si alcanzó la etapa máxima, se convierte en objeto llevable
         if (etapaActual == etapaMaxima)
         {
-            // Solo agrega componentes si no los tiene ya
             if (!puedeCargar)
             {
                 puedeCargar = true;
 
-                Rigidbody rb = gameObject.AddComponent<Rigidbody>(); // Añade Rigidbody para físicas
-                rb.mass = 1f;               // Masa del objeto
-                rb.useGravity = true;       // Usa gravedad
-                rb.isKinematic = false;     // Física activa
+                Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+                rb.mass = 1f;
+                rb.useGravity = true;
+                rb.isKinematic = false;
 
-                // Busca un BoxCollider existente para eliminarlo y evitar duplicados o problemas
                 BoxCollider boxColliderExistente = GetComponent<BoxCollider>();
-
                 if (boxColliderExistente != null)
-                {
                     Destroy(boxColliderExistente);
-                }
 
-                // Añade un nuevo BoxCollider configurado
                 BoxCollider nuevoBoxCollider = gameObject.AddComponent<BoxCollider>();
                 nuevoBoxCollider.size = new Vector3(3f, 3f, 3f);
                 nuevoBoxCollider.center = Vector3.zero;
             }
-
-            //// Programa la autodestrucción del script Planta después de 1 segundo
-            //Invoke("Autodestruir", 1f);
         }
     }
 
-    void Autodestruir()
+    private IEnumerator CooldownEntreFases()
     {
-        // Destruye este componente Planta para evitar que siga funcionando
-        Destroy(this);
+        enCooldown = true;
+
+        // 🔹 Solo mostrar el objeto si NO está en la etapa máxima
+        if (etapaActual < etapaMaxima && objetoEspera != null)
+            objetoEspera.SetActive(true);
+
+        yield return new WaitForSeconds(tiempoEsperaEntreFases);
+
+        if (etapaActual < etapaMaxima && objetoEspera != null)
+            objetoEspera.SetActive(false);
+
+        enCooldown = false;
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        // Cuando un collider entra en la zona de la planta, verifica si es una regadera
         var regadera = other.GetComponent<Regadera>();
         if (regadera != null)
         {
-            regaderaEnZona = regadera;  // Guarda referencia a la regadera en zona
+            regaderaEnZona = regadera;
             Debug.Log("Regadera detectada en la planta.");
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        // Cuando un collider sale de la zona, verifica si es la regadera que tenía registrada
         var regadera = other.GetComponent<Regadera>();
         if (regadera != null && regadera == regaderaEnZona)
         {
-            regaderaEnZona = null;  // Elimina referencia porque la regadera ya no está
+            regaderaEnZona = null;
             Debug.Log("Regadera salió de la planta.");
         }
     }

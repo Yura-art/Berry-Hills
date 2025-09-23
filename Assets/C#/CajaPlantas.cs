@@ -47,7 +47,9 @@ public class CajaPlantas : MonoBehaviour, IInteractuable
         {
             if (planta.tipoActual != tipoAceptado)
             {
-                Debug.Log($"Esta caja solo acepta plantas del tipo {tipoAceptado}.");
+                //Debug.Log($"Esta caja solo acepta plantas del tipo {tipoAceptado}.");
+                UIManagerMensajes.instance.MostrarAdvertencia($"Esta caja solo acepta plantas del tipo {tipoAceptado}.");
+
                 return;
             }
 
@@ -55,7 +57,9 @@ public class CajaPlantas : MonoBehaviour, IInteractuable
             {
                 plantasGuardadas.Add(planta);
                 planta.gameObject.SetActive(false);
-                Debug.Log($"Planta guardada en la caja. Total plantas: {plantasGuardadas.Count}");
+                //Debug.Log($"Planta guardada en la caja. Total plantas: {plantasGuardadas.Count}");
+                UIManagerMensajes.instance.MostrarAdvertencia($"Planta guardada en la caja. Total plantas: {plantasGuardadas.Count}");
+
 
                 ObjetoLlevable llevable = planta.GetComponent<ObjetoLlevable>();
                 if (llevable != null)

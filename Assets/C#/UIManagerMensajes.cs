@@ -7,6 +7,7 @@ public class UIManagerMensajes : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI textoMensajes;
+    public TextMeshProUGUI textoAdvertencias;
 
     private void Awake()
     {
@@ -22,5 +23,25 @@ public class UIManagerMensajes : MonoBehaviour
             string mensajeFormateado = mensaje.Replace(". ", ".\n");
             textoMensajes.text = mensajeFormateado;
         }
+    }
+    public void MostrarAdvertencia(string mensaje, float duracion = 1f)
+    {
+        if (textoAdvertencias != null)
+        {
+            string mensajeFormateado = mensaje.Replace(". ", ".\n");
+            textoAdvertencias.text = mensajeFormateado;
+            CancelInvoke(nameof(LimpiarAdvertencia));
+            Invoke(nameof(LimpiarAdvertencia), duracion);
+        }
+    }
+
+
+    public void LimpiarMensaje()
+    {
+        UIManagerMensajes.instance.MostrarMensaje("");
+    }
+    public void LimpiarAdvertencia()
+    {
+        UIManagerMensajes.instance.MostrarAdvertencia("");
     }
 }
