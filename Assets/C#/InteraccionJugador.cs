@@ -3,87 +3,78 @@
 public class InteraccionJugador : MonoBehaviour
 {
     [Header("UI")]
-
     [SerializeField] GameObject presionaE;
     [SerializeField] GameObject presionaF;
 
     [Header("Detección de Interacción (OverlapBox)")]
-    public Transform centroDeteccion;              // Punto desde donde se lanza la detección de objetos cercanos
-    public Vector3 tamanoDeteccion = new Vector3(1f, 1f, 1f); // Tamaño del área para detectar objetos interactuables
-    public LayerMask capaInteraccion;              // Capa que define qué objetos pueden ser interactuados
+    public Transform centroDeteccion;
+    public Vector3 tamanoDeteccion = new Vector3(1f, 1f, 1f);
+    public LayerMask capaInteraccion;
 
-    public Transform puntoCarga;                    // Empty donde se colocan objetos que se llevan
+    public Transform puntoCarga;
 
-    private IInteractuable interactuableActual;    // Referencia al objeto con el que se puede interactuar actualmente
-    private Animator animator;                      // Referencia al Animator para controlar animaciones
+    private IInteractuableE interactuableE;
+    private IInteractuableF interactuableF;
+    private Animator animator;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();       // Obtiene el Animator asociado a este GameObject
+        animator = GetComponent<Animator>();
         presionaE.SetActive(false);
         presionaF.SetActive(false);
     }
 
     void Update()
     {
-        interactuableActual?.xD();
+        DetectarObjetoCercano();
 
-        DetectarObjetoCercano();                     // Detecta objetos interactuables en el área
-
-        // Interacción con tecla E
-        if (Input.GetKeyDown(KeyCode.E) && interactuableActual != null)
+        if (Input.GetKeyDown(KeyCode.E) && interactuableE != null)
         {
-            interactuableActual.Interactuar(gameObject);  // Llama al método Interactuar del objeto detectado
-
-            // Alterna la animación "Interactuando" como bool
-            bool interactuando = animator.GetBool("Interactuando");
-            animator.SetBool("Interactuando", !interactuando);
-            presionaF.SetActive(!presionaF.activeSelf);
+            interactuableE.Interactuar(gameObject);
+            animator.SetBool("Interactuando", true);
         }
 
-        // Interacción con click izquierdo con raycast
-
-        if (Input.GetKeyDown(KeyCode.F) && interactuableActual != null)
+        if (Input.GetKeyDown(KeyCode.F) && interactuableF != null)
         {
-            interactuableActual.InteractuarClick(gameObject);
-            if (presionaE != null) presionaE.SetActive(false);
-            if (presionaF != null) presionaF.SetActive(false);
+            interactuableF.InteractuarClick(gameObject);
+            presionaE.SetActive(false);
+            presionaF.SetActive(false);
         }
     }
 
     void DetectarObjetoCercano()
     {
-        interactuableActual = null; // Resetea la referencia cada frame
+        interactuableE = null;
+        interactuableF = null;
 
-        // Busca colisionadores dentro del área definida con OverlapBox, solo en la capa especificada
         Collider[] colisiones = Physics.OverlapBox(
-            centroDeteccion.position,     // Centro de la caja de detección
-            tamanoDeteccion / 2f,         // Mitad del tamaño (porque OverlapBox usa half extents)
-            Quaternion.identity,          // Sin rotación en la caja de detección
-            capaInteraccion               // Solo objetos en la capa de interacción
+            centroDeteccion.position,
+            tamanoDeteccion / 2f,
+            Quaternion.identity,
+            capaInteraccion
         );
 
-        // Recorre cada collider encontrado
         foreach (Collider col in colisiones)
         {
-            // Si el objeto tiene un componente que implemente IInteractuable, se guarda la referencia
-            if (col.TryGetComponent<IInteractuable>(out interactuableActual))
-            {
-                Debug.Log(col.gameObject.name);
-                presionaE?.SetActive(true); // Activa el texto de interacción
-                return;                             // Sale del método ya que encontró un objeto
-            }
+            if (col.TryGetComponent<IInteractuableE>(out interactuableE))
+                presionaE?.SetActive(true);
+
+            if (col.TryGetComponent<IInteractuableF>(out interactuableF))
+                presionaF?.SetActive(true);
+
+            if (interactuableE != null || interactuableF != null)
+                return;
         }
 
-        // Si no encontró nada interactuable, oculta el texto de interacción
         presionaE?.SetActive(false);
+        presionaF?.SetActive(false);
     }
 
     void OnDrawGizmosSelected()
     {
         if (centroDeteccion == null) return;
 
-        Gizmos.color = Color.cyan;                     // Color cyan para el gizmo
-        Gizmos.DrawWireCube(centroDeteccion.position, tamanoDeteccion);  // Dibuja la caja de detección en la escena
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireCube(centroDeteccion.position, tamanoDeteccion);
     }
 }

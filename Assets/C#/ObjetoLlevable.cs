@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public abstract class ObjetoLlevable : MonoBehaviour, IInteractuable
+public abstract class ObjetoLlevable : MonoBehaviour, IInteractuableE
 {
     private Rigidbody rb;
     private Collider col;
@@ -12,18 +12,19 @@ public abstract class ObjetoLlevable : MonoBehaviour, IInteractuable
     protected bool puedeCargar = true;
 
     public abstract void xD();
+
     public virtual void Update()
     {
         Invoke("VerificarRbCol", 0.2f);
     }
 
-    public virtual void Interactuar(GameObject interactor)
+    public virtual void Interactuar(GameObject interactor) // ✅ Solo tecla E
     {
-
         if (AudioManager.instance != null && AudioManager.instance.tomarObjeto != null)
         {
             AudioManager.instance.ReproducirSonido(AudioManager.instance.tomarObjeto);
         }
+
         if (!siendoLlevado)
         {
             // Recoger el objeto
@@ -66,6 +67,4 @@ public abstract class ObjetoLlevable : MonoBehaviour, IInteractuable
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
     }
-
-    public abstract void InteractuarClick(GameObject interactor);
 }

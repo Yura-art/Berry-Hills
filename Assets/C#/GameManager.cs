@@ -58,14 +58,36 @@ public class GameManager : MonoBehaviour
     public void ReiniciarNivel()
     {
         Time.timeScale = 1f;
+
+        ReiniciarAudioGeneral();
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void VolverAlMenu()
     {
         Time.timeScale = 1f;
-        LoadScene("Inicio"); 
+
+        ReiniciarAudioGeneral();
+
+        LoadScene("Inicio");
     }
+
+    private void ReiniciarAudioGeneral()
+    {
+        if (AudioManager.instance != null)
+        {
+            // detener todos los audios activos
+            AudioListener.pause = true;
+            AudioListener.pause = false;
+
+            // destruir instancia para que se cree de nuevo
+            Destroy(AudioManager.instance.gameObject);
+            AudioManager.instance = null;
+        }
+    }
+
+
 
     public void CerrarJuego()
     {

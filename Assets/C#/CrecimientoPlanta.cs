@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class CrecimientoPlanta : ObjetoLlevable
+public class CrecimientoPlanta : ObjetoLlevable, IInteractuableF
 {
     private Regadera regaderaEnZona;
     private float agua = 0f;
@@ -13,10 +13,10 @@ public class CrecimientoPlanta : ObjetoLlevable
     public Animator animator;
 
     [Header("Cooldown entre fases")]
-    public float tiempoEsperaEntreFases = 3f; // 🔹 Segundos de espera antes de poder regar otra vez
-    public GameObject objetoEspera;           // 🔹 Objeto que se activa mientras espera
+    public float tiempoEsperaEntreFases = 3f;
+    public GameObject objetoEspera;
 
-    private bool enCooldown = false; // 🔹 Evita regar durante la espera
+    private bool enCooldown = false;
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public class CrecimientoPlanta : ObjetoLlevable
         Debug.Log("Crecimiento planta");
     }
 
-    public override void InteractuarClick(GameObject interactor)
+    public void InteractuarClick(GameObject interactor) // ✅ solo F
     {
         if (regaderaEnZona != null)
         {
@@ -41,7 +41,7 @@ public class CrecimientoPlanta : ObjetoLlevable
     public void RecibirAgua(float cantidad)
     {
         if (etapaActual >= etapaMaxima) return;
-        if (enCooldown) return; // 🔹 Ignora el riego si está en espera
+        if (enCooldown) return;
 
         agua += cantidad;
 
@@ -49,7 +49,7 @@ public class CrecimientoPlanta : ObjetoLlevable
         {
             agua = 0;
             Crecer();
-            StartCoroutine(CooldownEntreFases()); // 🔹 Inicia espera después de crecer
+            StartCoroutine(CooldownEntreFases());
         }
     }
 
@@ -89,7 +89,6 @@ public class CrecimientoPlanta : ObjetoLlevable
     {
         enCooldown = true;
 
-        // 🔹 Solo mostrar el objeto si NO está en la etapa máxima
         if (etapaActual < etapaMaxima && objetoEspera != null)
             objetoEspera.SetActive(true);
 
@@ -100,7 +99,6 @@ public class CrecimientoPlanta : ObjetoLlevable
 
         enCooldown = false;
     }
-
 
     private void OnTriggerEnter(Collider other)
     {

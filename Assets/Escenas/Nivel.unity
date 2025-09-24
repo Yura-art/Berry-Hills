@@ -229,6 +229,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbe8bccee51805b4e806054b5fe8709d, type: 3}
+--- !u!1 &17316969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7653366067306313132, guid: fbe8bccee51805b4e806054b5fe8709d,
+    type: 3}
+  m_PrefabInstance: {fileID: 17316968}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &23066654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -556,6 +562,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90160e58a487d44eab03180df6dcdd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &70476573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 70476575}
+  - component: {fileID: 70476574}
+  m_Layer: 0
+  m_Name: Gestor Cajas Tutorial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &70476574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70476573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b8a931cb3fc2134a86411499c43fac9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cajas:
+  - {fileID: 1174762585}
+  fases:
+  - nombre: Fase 1
+    activar:
+    - {fileID: 143777167}
+    desactivar:
+    - {fileID: 70476573}
+    cajasNecesarias: 1
+    esFaseFinal: 0
+  controlTiempo: {fileID: 1535823155}
+  panelGanaste: {fileID: 1838381937}
+  musicaFondo: {fileID: 0}
+--- !u!4 &70476575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70476573}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.127715, y: -0.3742356, z: -35.12148}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &71057864
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &143777169
 Transform:
   m_ObjectHideFlags: 0
@@ -899,7 +962,7 @@ MonoBehaviour:
   - nombre: Fase 2
     activar:
     - {fileID: 1347305812}
-    - {fileID: 341610486}
+    - {fileID: 555242014}
     - {fileID: 1082986321}
     desactivar: []
     cajasNecesarias: 2
@@ -909,8 +972,15 @@ MonoBehaviour:
     - {fileID: 343635206}
     - {fileID: 557254583}
     - {fileID: 1504869889}
-    desactivar: []
-    cajasNecesarias: 2
+    - {fileID: 938712070}
+    - {fileID: 1495750644}
+    desactivar:
+    - {fileID: 143777167}
+    - {fileID: 680378655}
+    - {fileID: 672476899}
+    - {fileID: 919132149113746933}
+    - {fileID: 1632333520}
+    cajasNecesarias: 3
     esFaseFinal: 0
   controlTiempo: {fileID: 1535823155}
   panelGanaste: {fileID: 1838381937}
@@ -2096,21 +2166,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1866440110}
     m_Modifications:
-    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fab27d69c715be488c299759d1e61f1,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2182,6 +2237,21 @@ PrefabInstance:
       value: Intestinos
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7fab27d69c715be488c299759d1e61f1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
         type: 3}
       propertyPath: m_Layer
       value: 6
@@ -4150,16 +4220,42 @@ MonoBehaviour:
   textoDialogo: {fileID: 1328394137}
   botonSiguiente: {fileID: 549779396}
   frases:
-  - Hola,bienvenido a la tienda de Berry Hills
+  - Hola,bienvenido a la tienda de Berry Hill
   - Te dare algunas indicaciones de como funciona el lugar
-  - Hare como si yo fuera tu cliente...
-  - 'En este caso te pedire una manzana y tienes hasta las 12:50 para entregarmela
-
-    Podras
-    ver los pedidos y la hora en la parte superior de tu pantalla'
-  - Cada vez que entregas un pedido te pagaran al final de la jornada podras ver
-    cuanto dinero generaste
+  - "\xBFVes la mesa de la derecha? sobre esta estaran las semillas de las distintas
+    frutras que vendemos, en este caso el color de la bolsa indica que son manzanas"
+  - 'Puedes tomarlas acercandote a la bolsa y presionando [E] la podras cargar hasta
+    alguna de las macetas para poderla plantar '
+  - Cuando estes cerca de la maceta presiona [F] para poderla sembrar, automaticamente
+    la bolsa volvera a su sitio y tu semilla estara plantada
+  - En este momento tu Planta necesita agua para poder crecer y dar fruto.Puedes
+    tomar La regadera morada que esta en la parte de la derecha
+  - Es un proceso similar que con las semillas, puedes tomarla y acercarte a la maceta
+    para regarla presionando [F], pero tu agua es limitada, para eso esta la fuente
+  - Si te acercas a la fuente con la regadera podras cargarla con mas agua presionando
+    [F]
+  - "Cada que riegas tu planta y pasa a otra fase tendras que esperar un peque\xF1o
+    tiempo para poder regarla de nuevo.Hasta que finalmente te de su fruto "
+  - En este momento hare como si yo fuera tu cliente...
+  - En este caso te pedire una manzana y tienes un tiempo limite para entregarmela.Podras
+    ver los pedidos y el tiempo en la parte superior de tu pantalla
+  - 'Cada vez que entregas un pedido te pagaran con el tiempo que te sobro en cada
+    pedido,al final de la jornada podras ver cuanto dinero generaste o podras verlo
+    en la parte superior '
+  - Para finalizar el pedido tendras que llevar la fruta a su respectiva caja tomandola
+    con [E], podras reconocer su caja por su icono,al igual al estar cerca con la
+    manzana la puedes empacar presionando [F]
+  - Con eso concreto tu bienvenida a Berry hill, disfrutra de tu jornada
   velocidadEscritura: 0.05
+  objetosAActivar:
+  - {fileID: 641288394}
+  - {fileID: 680378655}
+  - {fileID: 1810024007}
+  - {fileID: 1535823154}
+  - {fileID: 1583923270}
+  indicesActivar: 0a0000000a0000000a0000000a0000000a000000
+  objetosADesactivar: []
+  indicesDesactivar: 
 --- !u!4 &658939103
 Transform:
   m_ObjectHideFlags: 0
@@ -4566,7 +4662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &680378656
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6027,6 +6123,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 966946917760829111, guid: a859b5a869e077946a5fb9f7d0e6634f,
         type: 3}
+      propertyPath: presionaE
+      value: 
+      objectReference: {fileID: 1453154407}
+    - target: {fileID: 966946917760829111, guid: a859b5a869e077946a5fb9f7d0e6634f,
+        type: 3}
+      propertyPath: presionaF
+      value: 
+      objectReference: {fileID: 55240297}
+    - target: {fileID: 966946917760829111, guid: a859b5a869e077946a5fb9f7d0e6634f,
+        type: 3}
       propertyPath: textoInteractuar
       value: 
       objectReference: {fileID: 0}
@@ -6135,6 +6241,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a859b5a869e077946a5fb9f7d0e6634f, type: 3}
+--- !u!1 &938712070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7279082755739205175, guid: a859b5a869e077946a5fb9f7d0e6634f,
+    type: 3}
+  m_PrefabInstance: {fileID: 938712069}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &947579089
 GameObject:
   m_ObjectHideFlags: 0
@@ -7442,6 +7554,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127540868}
   m_CullTransparentMesh: 1
+--- !u!1001 &1138226345
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7449242256519898108, guid: 92ae8c404866c4f46ad015212e20e225,
+        type: 3}
+      propertyPath: m_Name
+      value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742284594488871135, guid: 92ae8c404866c4f46ad015212e20e225,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 960
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742284594488871135, guid: 92ae8c404866c4f46ad015212e20e225,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 540
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742284594488871135, guid: 92ae8c404866c4f46ad015212e20e225,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742284594488871135, guid: 92ae8c404866c4f46ad015212e20e225,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742284594488871135, guid: 92ae8c404866c4f46ad015212e20e225,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742284594488871135, guid: 92ae8c404866c4f46ad015212e20e225,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742284594488871135, guid: 92ae8c404866c4f46ad015212e20e225,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742284594488871135, guid: 92ae8c404866c4f46ad015212e20e225,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742284594488871135, guid: 92ae8c404866c4f46ad015212e20e225,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742284594488871135, guid: 92ae8c404866c4f46ad015212e20e225,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 92ae8c404866c4f46ad015212e20e225, type: 3}
 --- !u!1 &1140305762
 GameObject:
   m_ObjectHideFlags: 0
@@ -8260,7 +8440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -640, y: 440}
+  m_AnchoredPosition: {x: 692, y: 57}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1265182144
@@ -9725,10 +9905,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b8a931cb3fc2134a86411499c43fac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cajas: []
-  fases: []
-  controlTiempo: {fileID: 0}
-  panelGanaste: {fileID: 0}
+  cajas:
+  - {fileID: 1593502293}
+  - {fileID: 461844686}
+  - {fileID: 1671929032}
+  fases:
+  - nombre: Fase 1
+    activar:
+    - {fileID: 787223266}
+    - {fileID: 947579089}
+    - {fileID: 1407049205}
+    - {fileID: 7252609425554786491}
+    - {fileID: 2013770377}
+    desactivar: []
+    cajasNecesarias: 1
+    esFaseFinal: 0
+  - nombre: 'Fase '
+    activar:
+    - {fileID: 71057864}
+    - {fileID: 82456460}
+    - {fileID: 1866440108}
+    - {fileID: 2019848931}
+    - {fileID: 17316969}
+    desactivar: []
+    cajasNecesarias: 2
+    esFaseFinal: 0
+  - nombre: 'Fase '
+    activar: []
+    desactivar: []
+    cajasNecesarias: 3
+    esFaseFinal: 1
+  controlTiempo: {fileID: 1535823155}
+  panelGanaste: {fileID: 1838381937}
   musicaFondo: {fileID: 0}
 --- !u!4 &1504869891
 Transform:
@@ -10191,7 +10399,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1535823155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10205,12 +10413,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiemposPorFase:
-  - 60
-  - 90
-  - 120
-  - 60
-  - 90
-  - 120
+  - 200
+  - 200
+  - 200
+  - 200
+  - 200
+  - 200
   textoTiempo: {fileID: 515988921}
   textoPuntaje: {fileID: 1622309178}
   panelPerdiste: {fileID: 1236443820}
@@ -10370,21 +10578,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2019848933}
     m_Modifications:
-    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fab27d69c715be488c299759d1e61f1,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -10456,6 +10649,21 @@ PrefabInstance:
       value: Intestinos
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7fab27d69c715be488c299759d1e61f1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
         type: 3}
       propertyPath: m_Layer
       value: 6
@@ -10598,7 +10806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1583923271
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11820,43 +12028,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 641288394}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 178698163}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 680378655}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1810024007}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -11893,6 +12065,18 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1965660981}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 680378655}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -12834,21 +13018,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 82456462}
     m_Modifications:
-    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fab27d69c715be488c299759d1e61f1,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -12920,6 +13089,21 @@ PrefabInstance:
       value: Intestinos
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7fab27d69c715be488c299759d1e61f1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
         type: 3}
       propertyPath: m_Layer
       value: 6
@@ -16705,7 +16889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cantidadRecarga: 10
-  tiempoRecarga: 5
+  tiempoRecarga: 3
   textoCooldown: {fileID: 1265182144}
 --- !u!65 &5580436702142536713
 BoxCollider:
@@ -17029,6 +17213,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbe8bccee51805b4e806054b5fe8709d, type: 3}
+--- !u!1 &7252609425554786491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7653366067306313132, guid: fbe8bccee51805b4e806054b5fe8709d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7252609425554786490}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7254242197226768378
 GameObject:
   m_ObjectHideFlags: 0
@@ -17443,9 +17633,11 @@ SceneRoots:
   - {fileID: 1596675262}
   - {fileID: 153579896}
   - {fileID: 143777169}
+  - {fileID: 70476575}
   - {fileID: 1504869891}
   - {fileID: 1852157597}
   - {fileID: 658939103}
   - {fileID: 1140305764}
   - {fileID: 240016475}
   - {fileID: 1965660980}
+  - {fileID: 1138226345}

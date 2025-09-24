@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BolsaSemillas : ObjetoLlevable
+public class BolsaSemillas : ObjetoLlevable, IInteractuableF
 {
     [Header("Tipo de planta a sembrar")]
     public Planta.TipoPlanta tipoAsembrar;
@@ -15,14 +15,12 @@ public class BolsaSemillas : ObjetoLlevable
     private bool enZonaSiembra = false;
     private bool yaSembrado = false;
 
-    //Posición original para resetear la bolsa
     private Vector3 posicionInicial;
     private Quaternion rotacionInicial;
     private Transform padreInicial;
 
     private void Start()
     {
-        // Guardar la posición, rotación y padre original al iniciar
         posicionInicial = transform.position;
         rotacionInicial = transform.rotation;
         padreInicial = transform.parent;
@@ -35,11 +33,10 @@ public class BolsaSemillas : ObjetoLlevable
 
     public override void Interactuar(GameObject jugador)
     {
-        base.Interactuar(jugador);
-        // Ya no destruimos la bolsa aquí
+        base.Interactuar(jugador); // ✅ sigue siendo con E
     }
 
-    public override void InteractuarClick(GameObject interactor)
+    public void InteractuarClick(GameObject interactor) // ✅ con F
     {
         Debug.Log("interactua");
         Sembrar();
@@ -80,61 +77,51 @@ public class BolsaSemillas : ObjetoLlevable
                 AudioManager.instance.ReproducirSonido(AudioManager.instance.sembrar);
             }
             Instantiate(prefab, puntoSiembra.position, Quaternion.identity);
-            //Debug.Log($"Sembraste: {tipoAsembrar}");
+
             UIManagerMensajes.instance.MostrarAdvertencia($"Sembraste: {tipoAsembrar}");
 
-            // Marcar como sembrado
             yaSembrado = true;
-
-            // 🔹 Reiniciar posición de la bolsa
             VolverASitio();
         }
     }
 
     private void VolverASitio()
     {
-        // 1️⃣ Soltar usando tu sistema
         ObjetoLlevable llevable = GetComponent<ObjetoLlevable>();
         if (llevable != null)
         {
             llevable.Soltar();
         }
 
-        // 🔹 Apagar animación de llevar
         GameObject jugador = GameObject.FindGameObjectWithTag("Player");
         if (jugador != null)
         {
             Animator anim = jugador.GetComponent<Animator>();
             if (anim != null)
             {
-                anim.SetBool("Interactuando", false); // o el nombre que uses para "cargando"
+                anim.SetBool("Interactuando", false);
             }
         }
 
-        // 2️⃣ Desactivar interacción momentáneamente para evitar conflictos
         Collider col = GetComponent<Collider>();
         if (col != null)
             col.enabled = false;
 
-        // 3️⃣ Esperar un momento antes de moverla
         StartCoroutine(RecolocarDespuesDeSoltar());
     }
 
-
     private IEnumerator RecolocarDespuesDeSoltar()
     {
-        yield return new WaitForSeconds(0.1f); // Pequeño delay para evitar tirones
+        yield return new WaitForSeconds(0.1f);
 
         transform.SetParent(padreInicial);
         transform.position = posicionInicial;
         transform.rotation = rotacionInicial;
 
-        // 4️⃣ Volver a activar el collider
         Collider col = GetComponent<Collider>();
         if (col != null)
             col.enabled = true;
 
-        // 5️⃣ Resetear estado
         yaSembrado = false;
     }
 

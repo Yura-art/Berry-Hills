@@ -1,21 +1,20 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Regadera : ObjetoLlevable
 {
-    public float cantidadAgua = 10f;  // Cantidad inicial de agua en la regadera
+    public float cantidadAgua = 10f;
 
-    public override void InteractuarClick(GameObject interactor)
+    public override void xD()
     {
     }
 
-    // Método para regar una planta
+    // âœ… No necesita InteractuarClick porque solo funciona con plantas
     public void Regar(CrecimientoPlanta planta)
     {
-        // Si aún queda agua disponible
         if (cantidadAgua > 0)
         {
-            planta.RecibirAgua(1f);  // Llama al método de la planta para recibir 1 unidad de agua
-            cantidadAgua -= 1f;      // Reduce la cantidad de agua en la regadera
+            planta.RecibirAgua(1f);
+            cantidadAgua -= 1f;
 
             if (AudioManager.instance != null && AudioManager.instance.regar != null)
             {
@@ -24,11 +23,7 @@ public class Regadera : ObjetoLlevable
         }
         else
         {
-            Debug.Log("La regadera está vacía."); // Mensaje si no queda agua para regar
+            Debug.Log("La regadera estÃ¡ vacÃ­a.");
         }
-    }
-
-    public override void xD()
-    {
     }
 }

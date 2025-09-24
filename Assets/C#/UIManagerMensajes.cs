@@ -24,7 +24,7 @@ public class UIManagerMensajes : MonoBehaviour
             textoMensajes.text = mensajeFormateado;
         }
     }
-    public void MostrarAdvertencia(string mensaje, float duracion = 1f)
+    public void MostrarAdvertencia(string mensaje, float duracion = 2f)
     {
         if (textoAdvertencias != null)
         {

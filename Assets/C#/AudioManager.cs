@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource correr;
     public AudioSource boton;          // Para sonidos de botones
     public AudioSource Llamada;
+    public AudioSource dialogo;        // 🔊 Canal dedicado solo para diálogos
 
     [Header("Clips")]
     public AudioClip tomarObjeto;
@@ -19,7 +20,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip guardarObjeto;
     public AudioClip sembrar;
     public AudioClip peridico;
-
 
     [Header("UI Clips")]
     public AudioClip botonClick;
@@ -35,17 +35,20 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
     void Start()
     {
-        if (musicaFondo != null && !musicaFondo.isPlaying)
+        if (musicaFondo != null)
         {
+            musicaFondo.Stop();
+            musicaFondo.time = 0f; // arranca desde el inicio
             musicaFondo.loop = true;
             musicaFondo.Play();
         }
@@ -58,7 +61,6 @@ public class AudioManager : MonoBehaviour
             musicaFondo.Play();
         }
     }
-
 
     public void ReproducirSonido(AudioClip clip)
     {
@@ -97,11 +99,22 @@ public class AudioManager : MonoBehaviour
             boton.Play();
         }
     }
+
+    // 🎙️ Diálogo (controlable)
     public void ReproducirDialogo()
     {
-        if (sonidoDialogo != null && efectos != null)
+        if (dialogo != null && sonidoDialogo != null)
         {
-            efectos.PlayOneShot(sonidoDialogo);
+            dialogo.clip = sonidoDialogo;
+            dialogo.Play();
+        }
+    }
+
+    public void DetenerDialogo()
+    {
+        if (dialogo != null && dialogo.isPlaying)
+        {
+            dialogo.Stop();
         }
     }
 
@@ -113,11 +126,11 @@ public class AudioManager : MonoBehaviour
             Llamada.Play();
         }
     }
+
     public void CerrarLlamada()
     {
-        if (sonidoLlamada != null)
+        if (Llamada != null && Llamada.isPlaying)
         {
-            Llamada.clip = sonidoLlamada;
             Llamada.Stop();
         }
     }

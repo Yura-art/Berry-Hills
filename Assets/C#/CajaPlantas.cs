@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-public class CajaPlantas : MonoBehaviour, IInteractuable
+public class CajaPlantas : MonoBehaviour, IInteractuableF
 {
     [Header("Capacidad")]
     public int capacidadMaxima = 5;
@@ -15,13 +15,11 @@ public class CajaPlantas : MonoBehaviour, IInteractuable
 
     private List<Planta> plantasGuardadas = new List<Planta>();
 
-    // ✅ Propiedad para saber si la caja está llena
     public bool EstaLlena
     {
         get { return plantasGuardadas.Count >= capacidadMaxima; }
     }
 
-    // ✅ Referencia al gestor para avisar cuando se llene
     public CajasManager gestor;
 
     private void Start()
@@ -34,12 +32,7 @@ public class CajaPlantas : MonoBehaviour, IInteractuable
         texto();
     }
 
-    public void Interactuar(GameObject interactor)
-    {
-        Debug.Log("Interactuaste con la caja.");
-    }
-
-    public void InteractuarClick(GameObject interactor)
+    public void InteractuarClick(GameObject interactor) // ✅ solo F
     {
         Planta planta = interactor.GetComponentInChildren<Planta>();
 
@@ -47,9 +40,7 @@ public class CajaPlantas : MonoBehaviour, IInteractuable
         {
             if (planta.tipoActual != tipoAceptado)
             {
-                //Debug.Log($"Esta caja solo acepta plantas del tipo {tipoAceptado}.");
                 UIManagerMensajes.instance.MostrarAdvertencia($"Esta caja solo acepta plantas del tipo {tipoAceptado}.");
-
                 return;
             }
 
@@ -57,9 +48,7 @@ public class CajaPlantas : MonoBehaviour, IInteractuable
             {
                 plantasGuardadas.Add(planta);
                 planta.gameObject.SetActive(false);
-                //Debug.Log($"Planta guardada en la caja. Total plantas: {plantasGuardadas.Count}");
                 UIManagerMensajes.instance.MostrarAdvertencia($"Planta guardada en la caja. Total plantas: {plantasGuardadas.Count}");
-
 
                 ObjetoLlevable llevable = planta.GetComponent<ObjetoLlevable>();
                 if (llevable != null)
@@ -78,7 +67,6 @@ public class CajaPlantas : MonoBehaviour, IInteractuable
                     anim.SetBool("Interactuando", false);
                 }
 
-                // ✅ Si ahora la caja está llena, avisamos al gestor
                 if (EstaLlena && gestor != null)
                 {
                     gestor.VerificarCajasLlenas();
@@ -110,10 +98,9 @@ public class CajaPlantas : MonoBehaviour, IInteractuable
 
     public void ReiniciarCaja()
     {
-        plantasGuardadas.Clear(); // Elimina todas las plantas guardadas
-        texto(); // Actualiza el UI de capacidad
+        plantasGuardadas.Clear();
+        texto();
     }
-
 
     public void xD()
     {
