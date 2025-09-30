@@ -488,7 +488,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.3552856, y: -2.10437}
+  m_AnchoredPosition: {x: 1.3552246, y: -2.10437}
   m_SizeDelta: {x: 51.4994, y: 43.3073}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &56467522
@@ -2905,6 +2905,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 681184294}
     m_Modifications:
+    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97735a00d52ecbd438b0619ac9b3a65e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2976,21 +2991,6 @@ PrefabInstance:
       value: Estomago
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 97735a00d52ecbd438b0619ac9b3a65e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
         type: 3}
       propertyPath: m_Layer
       value: 6
@@ -3087,6 +3087,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003488448856120760, guid: ee68cb25bf7a9274fbf195fe7db10fd3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8070508126932105306, guid: ee68cb25bf7a9274fbf195fe7db10fd3,
         type: 3}
@@ -4221,7 +4226,8 @@ MonoBehaviour:
   botonSiguiente: {fileID: 549779396}
   frases:
   - Hola,bienvenido a la tienda de Berry Hill
-  - Te dare algunas indicaciones de como funciona el lugar
+  - Te dare un poco de contexto de como funciona el lugar, puedes Moverte con WASD
+    y Correr con Shift
   - "\xBFVes la mesa de la derecha? sobre esta estaran las semillas de las distintas
     frutras que vendemos, en este caso el color de la bolsa indica que son manzanas"
   - 'Puedes tomarlas acercandote a la bolsa y presionando [E] la podras cargar hasta
@@ -4246,16 +4252,22 @@ MonoBehaviour:
     con [E], podras reconocer su caja por su icono,al igual al estar cerca con la
     manzana la puedes empacar presionando [F]
   - Con eso concreto tu bienvenida a Berry hill, disfrutra de tu jornada
-  velocidadEscritura: 0.05
+  velocidadEscritura: 0.1
   objetosAActivar:
   - {fileID: 641288394}
   - {fileID: 680378655}
   - {fileID: 1810024007}
   - {fileID: 1535823154}
   - {fileID: 1583923270}
-  indicesActivar: 0a0000000a0000000a0000000a0000000a000000
+  - {fileID: 46338540}
+  indicesActivar: 0a0000000a0000000a0000000a0000000a00000002000000
   objetosADesactivar: []
   indicesDesactivar: 
+  condicionesRequeridas:
+  - correrRealizado
+  - movimientoRealizado
+  - movimientoRealizado
+  indicesCondiciones: 020000000200000003000000
 --- !u!4 &658939103
 Transform:
   m_ObjectHideFlags: 0
@@ -6830,7 +6842,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 775c5101e65ad9a41a51eaec9f00e7bd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 24056ac7ebfb8814cad8832cb8e19ca5, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -9453,6 +9465,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 825343457}
     m_Modifications:
+    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97735a00d52ecbd438b0619ac9b3a65e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -9524,21 +9551,6 @@ PrefabInstance:
       value: Estomago
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 97735a00d52ecbd438b0619ac9b3a65e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
         type: 3}
       propertyPath: m_Layer
       value: 6
@@ -12705,6 +12717,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 743757629}
     m_Modifications:
+    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 97735a00d52ecbd438b0619ac9b3a65e,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -12776,21 +12803,6 @@ PrefabInstance:
       value: Estomago
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 97735a00d52ecbd438b0619ac9b3a65e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -5568371526223589888, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: -1018664272722485354, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8821623529969584324, guid: 5e7aa6c1788313b42b5b98c8f1b37f20,
         type: 3}
       propertyPath: m_Layer
       value: 6

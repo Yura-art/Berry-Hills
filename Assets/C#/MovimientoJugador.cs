@@ -9,6 +9,10 @@ public class MovimientoJugador : MonoBehaviour
     private Animator animator;
     public bool puedeMover = true;
 
+    private bool camino = false;
+    private bool corrio = false;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -39,34 +43,40 @@ public class MovimientoJugador : MonoBehaviour
 
         Vector3 direccion = new Vector3(-horizontal, 0f, -vertical);
 
-        // Si no hay movimiento
         if (direccion.magnitude < 0.1f)
         {
             BloquearMovimiento();
+            return;
         }
 
-        // Determinar si está corriendo
         bool estaCorriendo = Input.GetKey(KeyCode.LeftShift);
         float velocidadFinal = estaCorriendo ? velocidadCorrer : velocidad;
-
-        // Aplicar movimiento
         Vector3 movimiento = direccion.normalized * velocidadFinal;
         rb.velocity = new Vector3(movimiento.x, rb.velocity.y, movimiento.z);
 
-        // Animaciones
         animator.SetFloat("Velocidad", movimiento.magnitude);
         animator.SetBool("Corriendo", estaCorriendo);
 
-        // Sonidos
         if (estaCorriendo)
         {
+            if (!corrio)
+            {
+                corrio = true;
+                FindObjectOfType<DialogoManager>().CumplirCondicion("correrRealizado");
+            }
             ReproducirSonido(AudioManager.instance.correr, AudioManager.instance.caminar);
         }
         else
         {
+            if (!camino)
+            {
+                camino = true;
+                FindObjectOfType<DialogoManager>().CumplirCondicion("movimientoRealizado");
+            }
             ReproducirSonido(AudioManager.instance.caminar, AudioManager.instance.correr);
         }
     }
+
 
     void RotarSegunMovimiento()
     {

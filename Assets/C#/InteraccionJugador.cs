@@ -17,28 +17,44 @@ public class InteraccionJugador : MonoBehaviour
     private IInteractuableF interactuableF;
     private Animator animator;
 
+    // Flags para saber si ya se interactuó con E y F
+    private bool interactuoE = false;
+    private bool interactuoF = false;
+
+    private DialogoManager dialogoManager;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         presionaE.SetActive(false);
         presionaF.SetActive(false);
+
+        dialogoManager = FindObjectOfType<DialogoManager>();
     }
 
     void Update()
     {
         DetectarObjetoCercano();
 
-        if (Input.GetKeyDown(KeyCode.E) && interactuableE != null)
+        if (Input.GetKeyDown(KeyCode.E) && interactuableE != null && !interactuoE)
         {
             interactuableE.Interactuar(gameObject);
             animator.SetBool("Interactuando", true);
+            interactuoE = true;
+
+            if (dialogoManager != null)
+                dialogoManager.CumplirCondicion("interactuoE");
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && interactuableF != null)
+        if (Input.GetKeyDown(KeyCode.F) && interactuableF != null && !interactuoF)
         {
             interactuableF.InteractuarClick(gameObject);
             presionaE.SetActive(false);
             presionaF.SetActive(false);
+            interactuoF = true;
+
+            if (dialogoManager != null)
+                dialogoManager.CumplirCondicion("interactuoF");
         }
     }
 

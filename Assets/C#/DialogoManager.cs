@@ -29,6 +29,13 @@ public class DialogoManager : MonoBehaviour
     public List<GameObject> objetosADesactivar;
     public List<int> indicesDesactivar;
 
+    [Header("Condiciones necesarias por índice")]
+    public List<string> condicionesRequeridas;
+    public List<int> indicesCondiciones;
+
+    private HashSet<string> condicionesCumplidas = new HashSet<string>();
+
+
     void Start()
     {
         panelDialogo.SetActive(false);
@@ -59,22 +66,30 @@ public class DialogoManager : MonoBehaviour
 
     public void MostrarSiguienteFrase()
     {
+        // Verificar si el índice actual requiere una condición
+        for (int i = 0; i < indicesCondiciones.Count; i++)
+        {
+            if (indice == indicesCondiciones[i])
+            {
+                string condicion = condicionesRequeridas[i];
+                if (!condicionesCumplidas.Contains(condicion))
+                {
+                    UIManagerMensajes.instance.MostrarMensaje("Realiza la acción para continuar...");
+                    return; // No avanzar hasta cumplir condición
+                }
+            }
+        }
+
         if (indice < frases.Length)
         {
-            // detener escritura previa si existía
             if (escribiendo != null)
                 StopCoroutine(escribiendo);
 
-            // detener sonido para que no se solapen
             AudioManager.instance.DetenerDialogo();
 
-            // limpiar texto
             textoDialogo.text = "";
-
-            // iniciar escritura letra por letra
             escribiendo = StartCoroutine(EscribirTexto(frases[indice]));
 
-            // ✅ Revisar activaciones / desactivaciones
             RevisarEventosDialogo(indice);
 
             indice++;
@@ -84,6 +99,7 @@ public class DialogoManager : MonoBehaviour
             CerrarDialogo();
         }
     }
+
 
     IEnumerator EscribirTexto(string frase)
     {
@@ -118,6 +134,16 @@ public class DialogoManager : MonoBehaviour
             }
         }
     }
+
+    public void CumplirCondicion(string condicion)
+    {
+        if (!condicionesCumplidas.Contains(condicion))
+        {
+            condicionesCumplidas.Add(condicion);
+            Debug.Log("✅ Condición cumplida: " + condicion);
+        }
+    }
+
 
     void CerrarDialogo()
     {
