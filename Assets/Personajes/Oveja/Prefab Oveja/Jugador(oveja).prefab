@@ -793,12 +793,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f46ce3d920891f4baf3ebc1a0a88d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textoInteractuar: {fileID: 0}
+  presionaE: {fileID: 0}
+  presionaF: {fileID: 0}
   centroDeteccion: {fileID: 8778271419952861806}
   tamanoDeteccion: {x: 1.5, y: 2, z: 2}
   capaInteraccion:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   puntoCarga: {fileID: 8778271419952861806}
 --- !u!114 &4631546760822778065
 MonoBehaviour:
@@ -814,6 +815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 5
   velocidadCorrer: 8
+  puedeMover: 1
 --- !u!4 &582722016952529053 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d11b664d1ee3164eae0f49ca5f5b2d5,

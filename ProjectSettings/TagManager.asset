@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ZonaSiembra
   - Regadera
+  - BolsaSemillas
   layers:
   - Default
   - TransparentFX
