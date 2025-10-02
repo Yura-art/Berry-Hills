@@ -8,10 +8,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 185287551952322919, guid: 2fb10b441dbb5da44818004431de71b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 185287551952322919, guid: 2fb10b441dbb5da44818004431de71b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Fruta
+      objectReference: {fileID: 0}
     - target: {fileID: 271282136744297152, guid: 2fb10b441dbb5da44818004431de71b0,
         type: 3}
       propertyPath: m_Name
       value: Manzanas C# Variant 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 271282136744297152, guid: 2fb10b441dbb5da44818004431de71b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Fruta
       objectReference: {fileID: 0}
     - target: {fileID: 341061697368426209, guid: 2fb10b441dbb5da44818004431de71b0,
         type: 3}
@@ -63,15 +78,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1378633745804670968, guid: 2fb10b441dbb5da44818004431de71b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Fruta
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659296367383597528, guid: 2fb10b441dbb5da44818004431de71b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Fruta
+      objectReference: {fileID: 0}
+    - target: {fileID: 1836097685197356048, guid: 2fb10b441dbb5da44818004431de71b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Fruta
+      objectReference: {fileID: 0}
     - target: {fileID: 1995095830901885730, guid: 2fb10b441dbb5da44818004431de71b0,
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2901325313858098043, guid: 2fb10b441dbb5da44818004431de71b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2901325313858098043, guid: 2fb10b441dbb5da44818004431de71b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Fruta
+      objectReference: {fileID: 0}
     - target: {fileID: 2990655190513836805, guid: 2fb10b441dbb5da44818004431de71b0,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6739260093513062712, guid: 2fb10b441dbb5da44818004431de71b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Fruta
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2990655190513836805, guid: 2fb10b441dbb5da44818004431de71b0, type: 3}

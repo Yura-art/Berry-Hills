@@ -1,38 +1,44 @@
-﻿using System.Collections;
-using UnityEngine;
-
+﻿using UnityEngine;
+using System.Collections;
 
 public class CrecimientoPrueba : MonoBehaviour
 {
-    private float agua = 0f;
-
     [Header("Crecimiento")]
-    public float aguaPorEtapa = 5f;
     public int etapaActual = 0;
     public int etapaMaxima = 3;
-    public Animator animator;
-
-    [Header("Cooldown entre fases")]
+    public float aguaPorEtapa = 5f;
     public float tiempoEsperaEntreFases = 3f;
-    public GameObject objetoEspera;
+    public Animator animator;
+    public GameObject objetoEspera; // Indicador de cooldown
 
+    private float agua = 0f;
     private bool enCooldown = false;
 
-    // 👇 extra para el riego
+    // Riego
     private bool regaderaEnRango = false;
     private RegaderaPrueba regadera;
 
+    private ZonaSiembra zonaSiembra;
 
+    private void Awake()
+    {
+        // Busca la ZonaSiembra en el objeto padre (asumiendo que la planta es hijo de la maceta)
+        zonaSiembra = GetComponentInParent<ZonaSiembra>();
+        if (zonaSiembra == null)
+            Debug.LogWarning("No se encontró ZonaSiembra en los padres");
+    }
+    public void DarZonaSiembra(ZonaSiembra zona)
+    {
+        zonaSiembra = zona;
+    }
 
     void Update()
     {
-        // Si la planta está madura, ya no se puede regar
         if (etapaActual >= etapaMaxima) return;
 
-        // Solo si la regadera está en rango y el jugador pulsa E
         if (regaderaEnRango && Input.GetKeyDown(KeyCode.E))
         {
-            if (!enCooldown && regadera.UsarAgua())
+            if (!enCooldown && regadera != null && regadera.UsarAgua())
             {
                 RecibirAgua(1f);
             }
@@ -43,16 +49,13 @@ public class CrecimientoPrueba : MonoBehaviour
         }
     }
 
-
-
     public void RecibirAgua(float cantidad)
     {
-        if (etapaActual >= etapaMaxima) return;
-        if (enCooldown) return;
+        if (etapaActual >= etapaMaxima || enCooldown) return;
 
         agua += cantidad;
 
-        if (agua >= aguaPorEtapa && etapaActual < etapaMaxima)
+        if (agua >= aguaPorEtapa)
         {
             agua = 0;
             Crecer();
@@ -65,64 +68,70 @@ public class CrecimientoPrueba : MonoBehaviour
         etapaActual = Mathf.Min(etapaActual + 1, etapaMaxima);
         animator.SetInteger("Etapa", etapaActual);
 
-        if (AudioManager.instance != null && AudioManager.instance.cosechar != null)
-        {
-            AudioManager.instance.ReproducirSonido(AudioManager.instance.cosechar);
-        }
-
         if (etapaActual == etapaMaxima)
         {
-            // Desactivamos detección de regadera
-            regaderaEnRango = false;
-            regadera = null;
+            GenerarFruta();
+            Debug.Log("siuuu");
 
-            // Rigidbody para el fruto
-            Rigidbody rb = gameObject.AddComponent<Rigidbody>();
-            rb.isKinematic = true; // no empuja al jugador
-
-            // Objeto interactuable
-            gameObject.AddComponent<ObjetoInteractuable>().nombre = "Fruta";
+            if (zonaSiembra != null)
+            {
+                zonaSiembra.LiberarMaceta(); // Ahora sí se libera correctamente
+                Debug.Log("jijijij");
+            }
         }
 
-
-
     }
+
 
     private IEnumerator CooldownEntreFases()
     {
         enCooldown = true;
-
-        if (etapaActual < etapaMaxima && objetoEspera != null)
-            objetoEspera.SetActive(true);
+        if (etapaActual < etapaMaxima && objetoEspera != null) objetoEspera.SetActive(true);
 
         yield return new WaitForSeconds(tiempoEsperaEntreFases);
 
-        if (etapaActual < etapaMaxima && objetoEspera != null)
-            objetoEspera.SetActive(false);
-
+        if (etapaActual < etapaMaxima && objetoEspera != null) objetoEspera.SetActive(false);
         enCooldown = false;
     }
 
-    // 👇 Detecta regadera en el trigger
-    void OnTriggerEnter(Collider other)
+    private void GenerarFruta()
     {
-        var r = other.GetComponent<RegaderaPrueba>();
+        // Añadir Rigidbody a la fruta
+        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+        rb.isKinematic = true;
+
+        // Convertir en objeto interactuable
+        ObjetoInteractuable interactuable = gameObject.AddComponent<ObjetoInteractuable>();
+        interactuable.nombre = "Fruta";
+        gameObject.tag = "Fruta";
+
+        // Liberar la maceta asociada
+
+
+        // Desactivar detección de regadera
+        regaderaEnRango = false;
+        regadera = null;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        RegaderaPrueba r = other.GetComponent<RegaderaPrueba>();
         if (r != null)
         {
             regaderaEnRango = true;
-            UIInventario.Instance.MostrarMensaje("Presiona E para regar");
             regadera = r;
+            UIInventario.Instance.MostrarMensaje("Presiona E para regar");
         }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        var r = other.GetComponent<RegaderaPrueba>();
-        if (r != null)
+        RegaderaPrueba r = other.GetComponent<RegaderaPrueba>();
+        if (r != null && r == regadera)
         {
             regaderaEnRango = false;
-            UIInventario.Instance.MostrarMensaje("");
             regadera = null;
+            UIInventario.Instance.MostrarMensaje("");
         }
     }
 }
