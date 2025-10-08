@@ -8,6 +8,9 @@ TagManager:
   - Regadera
   - BolsaSemillas
   - Fruta
+  - Banano
+  - Manzana
+  - Cereza
   layers:
   - Default
   - TransparentFX

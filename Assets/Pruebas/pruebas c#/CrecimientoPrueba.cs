@@ -20,6 +20,10 @@ public class CrecimientoPrueba : MonoBehaviour
 
     private ZonaSiembra zonaSiembra;
 
+    [Header("Prefab de Fruta")]
+    public GameObject prefabFruta;
+
+
     private void Awake()
     {
         // Busca la ZonaSiembra en el objeto padre (asumiendo que la planta es hijo de la maceta)
@@ -41,6 +45,7 @@ public class CrecimientoPrueba : MonoBehaviour
             if (!enCooldown && regadera != null && regadera.UsarAgua())
             {
                 RecibirAgua(1f);
+                AudioManager.instance.ReproducirSonido(AudioManager.instance.regar);
             }
             else if (enCooldown)
             {
@@ -71,12 +76,10 @@ public class CrecimientoPrueba : MonoBehaviour
         if (etapaActual == etapaMaxima)
         {
             GenerarFruta();
-            Debug.Log("siuuu");
 
             if (zonaSiembra != null)
             {
                 zonaSiembra.LiberarMaceta(); // Ahora sí se libera correctamente
-                Debug.Log("jijijij");
             }
         }
 
@@ -96,22 +99,27 @@ public class CrecimientoPrueba : MonoBehaviour
 
     private void GenerarFruta()
     {
-        // Añadir Rigidbody a la fruta
-        Rigidbody rb = gameObject.AddComponent<Rigidbody>();
-        rb.isKinematic = true;
+        if (prefabFruta == null)
+        {
+            Debug.LogWarning("⚠ No se asignó el prefab de fruta en el inspector");
+            return;
+        }
 
-        // Convertir en objeto interactuable
-        ObjetoInteractuable interactuable = gameObject.AddComponent<ObjetoInteractuable>();
-        interactuable.nombre = "Fruta";
-        gameObject.tag = "Fruta";
-
-        // Liberar la maceta asociada
+        // Instanciar una nueva fruta en la posición de la planta
+        GameObject nuevaFruta = Instantiate(prefabFruta, transform.position + Vector3.up * 0.5f,Quaternion.identity);
 
 
-        // Desactivar detección de regadera
+        // Reproducir sonido de cosecha
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.cosechar);
+
+
+        zonaSiembra.LiberarMaceta();
+
+        // Desactivar regadera
         regaderaEnRango = false;
         regadera = null;
     }
+
 
     private void OnTriggerEnter(Collider other)
     {

@@ -65,5 +65,6 @@ public class PruebaBolsa : ObjetoInteractuable
 
         gameObject.SetActive(true);
         UIInventario.Instance.MostrarMensaje("La bolsa volvió a su lugar");
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sembrar);
     }
 }

@@ -56,6 +56,7 @@ public class ObjetoInteractuable : MonoBehaviour
         if (rb != null)
         {
             rb.isKinematic = false;
+            Invoke(nameof(KinematicActivo), 0.2f);
             rb.velocity = Vector3.zero;
         }
 
@@ -63,4 +64,12 @@ public class ObjetoInteractuable : MonoBehaviour
 
         gameObject.SetActive(true);
     }
+
+    public void KinematicActivo()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+    }
 }
+
+

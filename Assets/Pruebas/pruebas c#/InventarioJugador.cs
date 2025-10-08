@@ -11,15 +11,23 @@ public class InventarioJugador : MonoBehaviour
     private ObjetoInteractuable objetoCerca;   // Objeto cercano que se puede recoger
     private ObjetoInteractuable objetoEnMano;  // Objeto actualmente en la mano
     private int slotActivo = -1;               // Índice del slot activo
+    private Animator animator;                 // Animator del jugador
 
     // Propiedades públicas de solo lectura
     public ObjetoInteractuable ObjetoEnMano => objetoEnMano;
     public int SlotActivo => slotActivo;
 
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     private void Update()
     {
         // Cambiar de slot con teclas 1, 2, 3
         if (Input.GetKeyDown(KeyCode.Alpha1)) CambiarSlot(0);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) CambiarSlot(1);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) CambiarSlot(2);
 
         // Recoger o soltar objetos con F
         if (Input.GetKeyDown(KeyCode.F))
@@ -42,12 +50,8 @@ public class InventarioJugador : MonoBehaviour
             objetoEnMano.Usar();
         }
 
-        // Mensajes de UI
-        if (objetoEnMano != null)
-        {
-            //UIInventario.Instance.MostrarMensaje("Presiona E para interactuar con " + objetoEnMano.nombre);
-        }
-        else if (objetoCerca == null)
+        // Limpiar mensajes si no hay nada
+        if (objetoEnMano == null && objetoCerca == null)
         {
             UIInventario.Instance.MostrarMensaje("");
         }
@@ -61,7 +65,6 @@ public class InventarioJugador : MonoBehaviour
             if (slots[i] == null) // Encuentra un slot vacío
             {
                 slots[i] = obj;
-
                 obj.Recoger();
                 obj.transform.SetParent(null);
                 obj.gameObject.SetActive(false);
@@ -72,6 +75,8 @@ public class InventarioJugador : MonoBehaviour
                 }
 
                 UIInventario.Instance.MostrarMensaje(obj.nombre + " agregado al inventario");
+                AudioManager.instance.ReproducirSonido(AudioManager.instance.tomarObjeto);
+
                 return;
             }
         }
@@ -85,6 +90,7 @@ public class InventarioJugador : MonoBehaviour
     {
         if (nuevoSlot < 0 || nuevoSlot >= slots.Length) return;
 
+        // Quitar objeto en mano si hay
         if (objetoEnMano != null)
         {
             objetoEnMano.gameObject.SetActive(false);
@@ -101,8 +107,13 @@ public class InventarioJugador : MonoBehaviour
             objetoEnMano.transform.SetParent(puntoMano);
             objetoEnMano.transform.localPosition = Vector3.zero;
             objetoEnMano.transform.localRotation = Quaternion.identity;
-        }
 
+            animator.SetBool("Interactuando", true); // ✅ activar animación
+        }
+        else
+        {
+            animator.SetBool("Interactuando", false); // ✅ desactivar si no hay objeto
+        }
     }
 
     // Suelta un objeto del inventario
@@ -118,7 +129,7 @@ public class InventarioJugador : MonoBehaviour
         objeto.Soltar(posicionSoltar);
         objeto.gameObject.SetActive(true);
 
-        // Ajuste para objetos con Rigidbody
+        // Resetear físicas
         Rigidbody rb = objeto.GetComponent<Rigidbody>();
         if (rb != null)
         {
@@ -127,11 +138,16 @@ public class InventarioJugador : MonoBehaviour
         }
 
         UIInventario.Instance.MostrarMensaje("Soltaste " + objeto.nombre);
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.tomarObjeto);
 
         slots[slotIndex] = null;
-        if (slotActivo == slotIndex) objetoEnMano = null;
-    }
 
+        if (slotActivo == slotIndex)
+        {
+            objetoEnMano = null;
+            animator.SetBool("Interactuando", false); // ✅ apagar animación
+        }
+    }
 
     // Usa y elimina el objeto activo del inventario
     public void UsarObjetoActivo()
@@ -149,11 +165,14 @@ public class InventarioJugador : MonoBehaviour
             Destroy(usado.gameObject);
         }
 
+        animator.SetBool("Interactuando", false); // ✅ desactivar animación
     }
 
     // Define el objeto cercano
     public void SetObjetoCerca(ObjetoInteractuable obj)
     {
         objetoCerca = obj;
+        // 🔊 Si quieres sonido aquí, lo dejamos
+        // AudioManager.instance.ReproducirSonido(AudioManager.instance.tomarObjeto);
     }
 }

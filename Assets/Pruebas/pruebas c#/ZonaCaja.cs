@@ -11,37 +11,45 @@ public class ZonaCaja : MonoBehaviour
     public TextMeshProUGUI capacidadText;
 
     [Header("Tag aceptado")]
-    public string tagAceptado = "Fruta";
+    public string tagAceptado;
 
-    [Header("Manager (opcional)")]
+    [Header("Gestor (opcional)")]
     public ManagerCajaPrueba gestor;
 
     private List<ObjetoInteractuable> objetosGuardados = new List<ObjetoInteractuable>();
     private bool jugadorEnRango = false;
     private InventarioJugador jugador;
 
+    // --- Temporizador para los mensajes ---
+    private float temporizadorMensaje = 0f;
+
     public bool EstaLlena => objetosGuardados.Count >= capacidadMaxima;
 
-    private void Start() => ActualizarTexto();
+    private void Start()
+    {
+        ActualizarTexto();
+    }
 
     private void Update()
     {
-        // Actualiza el texto de capacidad
         ActualizarTexto();
 
-        // 🔑 Actualiza dinámicamente el mensaje mientras el jugador está en el trigger
+        // 🔁 Control del temporizador para ocultar mensajes
+        if (temporizadorMensaje > 0)
+        {
+            temporizadorMensaje -= Time.deltaTime;
+            if (temporizadorMensaje <= 0)
+                UIInventario.Instance.MostrarMensaje("");
+        }
+
+        // ⚙️ Comportamiento cuando el jugador está en rango
         if (jugadorEnRango && jugador != null)
         {
             if (jugador.ObjetoEnMano != null && jugador.ObjetoEnMano.CompareTag(tagAceptado))
             {
-                UIInventario.Instance.MostrarMensaje("Presiona E para guardar la fruta");
-            }
-            else
-            {
-                UIInventario.Instance.MostrarMensaje(""); // No tiene objeto válido en mano
+                MostrarMensajeTemporal("Presiona E para guardar la fruta", 1.5f);
             }
 
-            // Guardar con E
             if (Input.GetKeyDown(KeyCode.E))
                 GuardarObjeto();
         }
@@ -52,32 +60,34 @@ public class ZonaCaja : MonoBehaviour
         if (jugador == null) return;
 
         ObjetoInteractuable objEnMano = jugador.ObjetoEnMano;
+
         if (objEnMano == null)
         {
-            UIInventario.Instance.MostrarMensaje("No llevas ningún objeto para guardar.");
+            MostrarMensajeTemporal("No llevas ningún objeto para guardar.", 2.5f);
             return;
         }
 
         if (!objEnMano.CompareTag(tagAceptado))
         {
-            UIInventario.Instance.MostrarMensaje($"Esta caja solo acepta objetos con tag '{tagAceptado}'.");
+            MostrarMensajeTemporal($"Esta caja solo acepta '{tagAceptado}'.", 2.5f);
             return;
         }
 
         if (EstaLlena)
         {
-            UIInventario.Instance.MostrarMensaje("La caja está llena.");
+            MostrarMensajeTemporal("La caja está llena.", 3f);
             return;
         }
 
-        // Guardar
+        // ✅ Guardar el objeto
         objetosGuardados.Add(objEnMano);
         jugador.SoltarObjeto(jugador.SlotActivo);
         objEnMano.gameObject.SetActive(false);
 
-        UIInventario.Instance.MostrarMensaje($"Guardaste {objEnMano.nombre}. Total: {objetosGuardados.Count}");
+        MostrarMensajeTemporal($"Guardaste {objEnMano.nombre}. Total: {objetosGuardados.Count}", 2f);
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.guardarObjeto);
 
-        // Notificar al gestor
+        // Notificar al gestor si existe
         if (gestor != null)
             gestor.VerificarCajasLlenas();
     }
@@ -90,9 +100,8 @@ public class ZonaCaja : MonoBehaviour
             jugadorEnRango = true;
             jugador = inv;
 
-            // Mensaje inicial según objeto en mano
             if (jugador.ObjetoEnMano != null && jugador.ObjetoEnMano.CompareTag(tagAceptado))
-                UIInventario.Instance.MostrarMensaje("Presiona E para guardar la fruta");
+                MostrarMensajeTemporal("Presiona E para guardar la fruta", 1.5f);
         }
     }
 
@@ -103,7 +112,8 @@ public class ZonaCaja : MonoBehaviour
         {
             jugadorEnRango = false;
             jugador = null;
-            UIInventario.Instance.MostrarMensaje(""); // limpiar mensaje
+            UIInventario.Instance.MostrarMensaje("");
+            temporizadorMensaje = 0f;
         }
     }
 
@@ -120,4 +130,11 @@ public class ZonaCaja : MonoBehaviour
     }
 
     public List<ObjetoInteractuable> ObtenerObjetosGuardados() => objetosGuardados;
+
+    // 🕒 Método auxiliar para mostrar mensajes temporales
+    private void MostrarMensajeTemporal(string mensaje, float duracion)
+    {
+        UIInventario.Instance.MostrarMensaje(mensaje);
+        temporizadorMensaje = duracion;
+    }
 }

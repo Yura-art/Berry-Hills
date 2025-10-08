@@ -29,7 +29,12 @@ public class ZonaAgua : MonoBehaviour
     {
         if (enRango && Input.GetKeyDown(KeyCode.E) && regadera != null)
         {
-            regadera.RecargarAgua();
+            // 🔑 Solo sonar si realmente se recarga
+            bool recargando = regadera.RecargarAgua();
+            if (recargando)
+            {
+                AudioManager.instance.ReproducirFuenteAgua();
+            }
         }
     }
 }

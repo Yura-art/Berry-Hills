@@ -16,8 +16,7 @@ public class ZonaSiembra : MonoBehaviour
         // Mensaje dinámico según estado
         if (ocupada)
         {
-            // Planta ocupada, no mostramos mensaje de siembra
-            return;
+            return; // Planta ocupada, no mostramos mensaje de siembra
         }
 
         if (jugador.ObjetoEnMano != null && jugador.ObjetoEnMano.CompareTag(tagBolsa))
@@ -43,12 +42,20 @@ public class ZonaSiembra : MonoBehaviour
         GameObject prefab = bolsaSemilla.ObtenerPrefab();
         if (prefab == null) return;
 
+        // 🔑 Activar animación de interacción
+        Animator anim = jugador.GetComponentInChildren<Animator>();
+        if (anim != null)
+            anim.SetBool("Interactuando", true);
+
         // Instanciar planta
-        GameObject semillaObj = Instantiate(prefab, transform.position, Quaternion.identity);
+        Vector3 posicionSemilla = transform.position + Vector3.up * 1.3f;
+        GameObject semillaObj = Instantiate(prefab, posicionSemilla, Quaternion.identity);
+
         if (semillaObj.TryGetComponent(out CrecimientoPrueba crecimiento))
         {
             crecimiento.DarZonaSiembra(this);
         }
+
         // Sacar del inventario y devolver bolsa
         jugador.SoltarObjeto(jugador.SlotActivo);
         bolsaSemilla.VolverASitio();
@@ -58,6 +65,11 @@ public class ZonaSiembra : MonoBehaviour
 
         // Limpiar mensaje
         UIInventario.Instance.MostrarMensaje("");
+        AudioManager.instance.ReproducirSonido(AudioManager.instance.sembrar);
+
+        // 🔑 Desactivar animación para que no se quede pegada
+        if (anim != null)
+            anim.SetBool("Interactuando", false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -84,16 +96,6 @@ public class ZonaSiembra : MonoBehaviour
     // Llamar desde CrecimientoPrueba cuando la planta esté lista para cosecha
     public void LiberarMaceta()
     {
-        //if (ocupada == true)
-        //{
-
-        //}
-
         ocupada = false;
-        // Actualizar mensaje solo si el jugador sigue dentro y tiene la bolsa
-        //if (enRango && jugador != null && jugador.ObjetoEnMano != null && jugador.ObjetoEnMano.CompareTag(tagBolsa))
-        //{
-        //    UIInventario.Instance.MostrarMensaje("Presiona E para sembrar");
-        //}
     }
 }
