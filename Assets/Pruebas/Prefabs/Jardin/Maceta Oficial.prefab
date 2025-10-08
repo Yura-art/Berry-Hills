@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 570628819748536993, guid: de4ac34336a2f9344ac8eef3d8cf482b,
         type: 3}
       propertyPath: m_Name
-      value: Maceta Oficial 1
+      value: Maceta Oficial
       objectReference: {fileID: 0}
     - target: {fileID: 570628819748536993, guid: de4ac34336a2f9344ac8eef3d8cf482b,
         type: 3}
@@ -34,7 +34,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: a74bc90f57c70374b9ceb3ff44b667d4, type: 2}
+      objectReference: {fileID: -6478536213147159724, guid: 15ff8da6a6cc17445b8aa4fd7ce5ec8c,
+        type: 3}
     - target: {fileID: 3589423041814685279, guid: de4ac34336a2f9344ac8eef3d8cf482b,
         type: 3}
       propertyPath: m_Enabled

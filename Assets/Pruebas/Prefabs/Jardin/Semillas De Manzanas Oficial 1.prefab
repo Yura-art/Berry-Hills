@@ -1,0 +1,215 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2946552603757468387
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 704845044286024085, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348856265892741023, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_Name
+      value: Semillas De Manzanas Oficial 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348856265892741023, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348856265892741023, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1348856265892741023, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_TagString
+      value: BolsaSemillas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826315379450869136, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: tipoAsembrar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826315379450869136, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: prefabBananos
+      value: 
+      objectReference: {fileID: 7194822879790288531, guid: b542ae945c976dc4593734b3f599763e,
+        type: 3}
+    - target: {fileID: 1826315379450869136, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: prefabCerezas
+      value: 
+      objectReference: {fileID: 2560522040701183496, guid: a1a1df74a29c22c4782acab7420be1b2,
+        type: 3}
+    - target: {fileID: 1826315379450869136, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: prefabManzanas
+      value: 
+      objectReference: {fileID: 3652435958874598636, guid: 53df4894c76ae5c49a44fc3c6a8e48ed,
+        type: 3}
+    - target: {fileID: 1850866977811769644, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871005168571161213, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2871005168571161213, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_TagString
+      value: BolsaSemillas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350478382135923203, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -29.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350478382135923203, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350478382135923203, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.45603704
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350478382135923203, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350478382135923203, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350478382135923203, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350478382135923203, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350478382135923203, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350478382135923203, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6350478382135923203, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6715429986213283359, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216380265353817385, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.4900001
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216380265353817385, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 6.071639
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216380265353817385, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9216380265353817385, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -1.6358199
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1348856265892741023, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 7909109744992320650}
+    - targetCorrespondingSourceObject: {fileID: 1348856265892741023, guid: f9d403d8c937c9b45ac164b9af251a3c,
+        type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 5622978653648604332}
+  m_SourcePrefab: {fileID: 100100000, guid: f9d403d8c937c9b45ac164b9af251a3c, type: 3}
+--- !u!1 &4205333303671121276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1348856265892741023, guid: f9d403d8c937c9b45ac164b9af251a3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2946552603757468387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &7909109744992320650
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205333303671121276}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &5622978653648604332
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205333303671121276}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1, y: 0.95, z: 1.31}
+  m_Center: {x: 0, y: 0, z: 0}
