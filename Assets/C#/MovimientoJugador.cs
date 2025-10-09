@@ -62,7 +62,7 @@ public class MovimientoJugador : MonoBehaviour
             if (!corrio)
             {
                 corrio = true;
-                FindObjectOfType<DialogoManager>().CumplirCondicion("correrRealizado");
+                //FindObjectOfType<DialogoManager>().CumplirCondicion("correrRealizado");
             }
             ReproducirSonido(AudioManager.instance.correr, AudioManager.instance.caminar);
         }
@@ -71,7 +71,7 @@ public class MovimientoJugador : MonoBehaviour
             if (!camino)
             {
                 camino = true;
-                FindObjectOfType<DialogoManager>().CumplirCondicion("movimientoRealizado");
+                //FindObjectOfType<DialogoManager>().CumplirCondicion("movimientoRealizado");
             }
             ReproducirSonido(AudioManager.instance.caminar, AudioManager.instance.correr);
         }

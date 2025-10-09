@@ -67,7 +67,7 @@ public class RegaderaPrueba : ObjetoInteractuable
         if (aguaActual > 0)
         {
             aguaActual--;
-            UIInventario.Instance.MostrarMensaje($"Agua restante: {aguaActual}");
+            //UIInventario.Instance.MostrarMensaje($"Agua restante: {aguaActual}");
             ActualizarBarraAgua();
             return true;
         }
