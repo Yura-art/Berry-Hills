@@ -228,7 +228,7 @@ PrefabInstance:
     - target: {fileID: 9216380265353817385, guid: f9d403d8c937c9b45ac164b9af251a3c,
         type: 3}
       propertyPath: m_Size.z
-      value: 4.933256
+      value: 6.045805
       objectReference: {fileID: 0}
     - target: {fileID: 9216380265353817385, guid: f9d403d8c937c9b45ac164b9af251a3c,
         type: 3}
@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 9216380265353817385, guid: f9d403d8c937c9b45ac164b9af251a3c,
         type: 3}
       propertyPath: m_Center.z
-      value: -1.0666285
+      value: 1.6475897
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -541,7 +541,8 @@ PrefabInstance:
       value: Sangre
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -6733177361254619370, guid: b5a6bfc0f3acaa242af78b2bc6a9d8fa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5a6bfc0f3acaa242af78b2bc6a9d8fa, type: 3}
