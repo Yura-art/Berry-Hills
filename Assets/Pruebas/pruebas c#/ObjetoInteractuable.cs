@@ -56,7 +56,7 @@ public class ObjetoInteractuable : MonoBehaviour
         if (rb != null)
         {
             rb.isKinematic = false;
-            Invoke(nameof(KinematicActivo), 0.2f);
+            Invoke(nameof(KinematicActivo), 1f);
             rb.velocity = Vector3.zero;
         }
 
