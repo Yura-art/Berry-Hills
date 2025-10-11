@@ -123,31 +123,25 @@ public class InventarioJugador : MonoBehaviour
         if (slots[slotIndex] == null) return;
 
         ObjetoInteractuable objeto = slots[slotIndex];
-        objeto.transform.SetParent(null);
 
-        Vector3 posicionSoltar = transform.position + transform.forward * 5f;
-        objeto.Soltar(posicionSoltar);
-        objeto.gameObject.SetActive(true);
-
-        // Resetear físicas
-        Rigidbody rb = objeto.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-        }
+        // ✅ Volver a posición y rotación original
+        objeto.Soltar();
 
         UIInventario.Instance.MostrarMensaje("Soltaste " + objeto.nombre);
         AudioManager.instance.ReproducirSonido(AudioManager.instance.tomarObjeto);
 
+        // ✅ Quitar del inventario
         slots[slotIndex] = null;
 
+        // ✅ Quitar de la mano si era el activo
         if (slotActivo == slotIndex)
         {
             objetoEnMano = null;
-            animator.SetBool("Interactuando", false); // ✅ apagar animación
+            animator.SetBool("Interactuando", false);
         }
     }
+
+
 
     // Usa y elimina el objeto activo del inventario
     public void UsarObjetoActivo()

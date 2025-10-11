@@ -2,40 +2,42 @@
 
 public class ObjetoInteractuable : MonoBehaviour
 {
-    public string nombre = "Objeto";      // Nombre del objeto
-    //public Sprite icono;                  // Icono para mostrar en la UI
+    public string nombre = "Objeto";
 
-    private InventarioJugador inventario; // Referencia al inventario del jugador cercano
+    private InventarioJugador inventario;
+
+    // ✅ Guardamos posición y rotación original
+    private Vector3 posicionOriginal;
+    private Quaternion rotacionOriginal;
+
+    private void Awake()
+    {
+        // ✅ Guardamos la posición inicial y rotación apenas se crea
+        posicionOriginal = transform.position;
+        rotacionOriginal = transform.rotation;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Trigger detectado con: " + other.name);
-
         if (other.CompareTag("Player") && gameObject.layer == LayerMask.NameToLayer("Interactuable"))
         {
-            //Debug.Log("Jugador entró al trigger del objeto: " + nombre);
             inventario = other.GetComponent<InventarioJugador>();
             UIInventario.Instance.MostrarMensaje("Presiona F para recoger " + nombre);
             inventario.SetObjetoCerca(this);
         }
     }
 
-
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player") && gameObject.layer == LayerMask.NameToLayer("Interactuable") && inventario != null)
         {
             UIInventario.Instance.MostrarMensaje("");
-
             inventario.SetObjetoCerca(null);
             inventario = null;
         }
     }
 
-    public virtual void Usar()
-    {
-        //UIInventario.Instance.MostrarMensaje("Usaste " + nombre);
-    }
+    public virtual void Usar() { }
 
     public void Recoger()
     {
@@ -46,17 +48,20 @@ public class ObjetoInteractuable : MonoBehaviour
         if (col != null) col.enabled = false;
     }
 
-    public void Soltar(Vector3 posicion)
+    // ✅ Soltar vuelve exactamente a su posición y rotación original
+    public void Soltar()
     {
-        transform.position = posicion;
+        transform.SetParent(null);
+
+        transform.position = posicionOriginal;
+        transform.rotation = rotacionOriginal;
 
         Rigidbody rb = GetComponent<Rigidbody>();
         Collider col = GetComponent<Collider>();
 
         if (rb != null)
         {
-            rb.isKinematic = false;
-            Invoke(nameof(KinematicActivo), 1f);
+            rb.isKinematic = true;
             rb.velocity = Vector3.zero;
         }
 
@@ -64,12 +69,4 @@ public class ObjetoInteractuable : MonoBehaviour
 
         gameObject.SetActive(true);
     }
-
-    public void KinematicActivo()
-    {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
-    }
 }
-
-
