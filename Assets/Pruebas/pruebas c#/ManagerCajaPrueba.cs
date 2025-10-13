@@ -80,13 +80,17 @@ public class ManagerCajaPrueba : MonoBehaviour
 
         if (fase.esFaseFinal)
         {
-            Time.timeScale = 0f;
+            Invoke(nameof(PausarJuego), 3f);
             panelGanaste.SetActive(true);
             controlTiempo.DetenerTiempo();
 
             if (musicaFondo != null && musicaFondo.isPlaying)
                 musicaFondo.Stop();
         }
+    }
+    void PausarJuego()
+    {
+        Time.timeScale = 0f;
     }
 
     public void ReiniciarTodasLasCajas()
