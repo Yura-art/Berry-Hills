@@ -8,7 +8,7 @@ public class InventarioJugador : MonoBehaviour
     [Header("Referencia donde se equipa el objeto en la mano")]
     public Transform puntoMano;
 
-    private ObjetoInteractuable objetoCerca;   // Objeto cercano que se puede recoger
+    public ObjetoInteractuable objetoCerca;   // Objeto cercano que se puede recoger
     private ObjetoInteractuable objetoEnMano;  // Objeto actualmente en la mano
     private int slotActivo = -1;               // Índice del slot activo
     private Animator animator;                 // Animator del jugador
@@ -124,16 +124,16 @@ public class InventarioJugador : MonoBehaviour
 
         ObjetoInteractuable objeto = slots[slotIndex];
 
-        // ✅ Volver a posición y rotación original
+        // Volver a posición y rotación original
         objeto.Soltar();
 
         UIInventario.Instance.MostrarMensaje("Soltaste " + objeto.nombre);
         AudioManager.instance.ReproducirSonido(AudioManager.instance.tomarObjeto);
 
-        // ✅ Quitar del inventario
+        // Quitar del inventario
         slots[slotIndex] = null;
 
-        // ✅ Quitar de la mano si era el activo
+        // Quitar de la mano si era el activo
         if (slotActivo == slotIndex)
         {
             objetoEnMano = null;
@@ -159,14 +159,14 @@ public class InventarioJugador : MonoBehaviour
             Destroy(usado.gameObject);
         }
 
-        animator.SetBool("Interactuando", false); // ✅ desactivar animación
+        animator.SetBool("Interactuando", false); // desactivar animación
     }
 
     // Define el objeto cercano
     public void SetObjetoCerca(ObjetoInteractuable obj)
     {
         objetoCerca = obj;
-        // 🔊 Si quieres sonido aquí, lo dejamos
+        // Si quieres sonido aquí, lo dejamos
         // AudioManager.instance.ReproducirSonido(AudioManager.instance.tomarObjeto);
     }
 }

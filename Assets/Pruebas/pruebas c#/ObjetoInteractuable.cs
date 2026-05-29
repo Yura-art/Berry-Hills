@@ -6,33 +6,44 @@ public class ObjetoInteractuable : MonoBehaviour
 
     private InventarioJugador inventario;
 
-    // ✅ Guardamos posición y rotación original
+    // Posición y rotación original
     private Vector3 posicionOriginal;
     private Quaternion rotacionOriginal;
 
     private void Awake()
     {
-        // ✅ Guardamos la posición inicial y rotación apenas se crea
         posicionOriginal = transform.position;
         rotacionOriginal = transform.rotation;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && gameObject.layer == LayerMask.NameToLayer("Interactuable"))
+        if (other.CompareTag("Player") &&
+            gameObject.layer == LayerMask.NameToLayer("Interactuable"))
         {
             inventario = other.GetComponent<InventarioJugador>();
-            UIInventario.Instance.MostrarMensaje("Presiona F para recoger " + nombre);
-            inventario.SetObjetoCerca(this);
+
+            if (inventario != null)
+            {
+                UIInventario.Instance.MostrarMensaje("Presiona F para recoger " + nombre);
+                inventario.SetObjetoCerca(this);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && gameObject.layer == LayerMask.NameToLayer("Interactuable") && inventario != null)
+        if (other.CompareTag("Player") &&
+            gameObject.layer == LayerMask.NameToLayer("Interactuable") &&
+            inventario != null)
         {
-            UIInventario.Instance.MostrarMensaje("");
-            inventario.SetObjetoCerca(null);
+            // SOLO limpiar si este objeto sigue siendo el actual
+            if (inventario.objetoCerca == this)
+            {
+                UIInventario.Instance.MostrarMensaje("");
+                inventario.SetObjetoCerca(null);
+            }
+
             inventario = null;
         }
     }
@@ -48,7 +59,6 @@ public class ObjetoInteractuable : MonoBehaviour
         if (col != null) col.enabled = false;
     }
 
-    // ✅ Soltar vuelve exactamente a su posición y rotación original
     public void Soltar()
     {
         transform.SetParent(null);
@@ -62,7 +72,8 @@ public class ObjetoInteractuable : MonoBehaviour
         if (rb != null)
         {
             rb.isKinematic = true;
-            rb.velocity = Vector3.zero;
+            //rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
         }
 
         if (col != null) col.enabled = true;
