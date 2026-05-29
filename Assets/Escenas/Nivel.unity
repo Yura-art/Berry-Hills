@@ -7026,6 +7026,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4519039109698675472, guid: 39b005337807feb4188f496832bd25d5,
+        type: 3}
+      propertyPath: velocidadRotacion.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519039109698675472, guid: 39b005337807feb4188f496832bd25d5,
+        type: 3}
+      propertyPath: velocidadRotacion.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519039109698675472, guid: 39b005337807feb4188f496832bd25d5,
+        type: 3}
+      propertyPath: velocidadRotacion.z
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 8312243037417667663, guid: 39b005337807feb4188f496832bd25d5,
         type: 3}
       propertyPath: capacidadText
