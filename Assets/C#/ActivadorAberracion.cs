@@ -5,10 +5,10 @@ using UnityEngine.Rendering.Universal;
 public class ActivarAberracion : MonoBehaviour
 {
     public Volume globalVolume; // Arrastras el Global Volume aquí
-
+    public float aberracion;
     void OnEnable()
     {
-        SetAberracion(1f);
+        SetAberracion(aberracion);
     }
 
     void OnDisable()

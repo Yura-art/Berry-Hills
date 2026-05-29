@@ -9282,6 +9282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalVolume: {fileID: 832575518}
+  aberracion: 0.5
 --- !u!114 &1427529718 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8672330700282131881, guid: 27440010d13da574ca46a6a873930ac3,
@@ -9558,7 +9559,7 @@ PrefabInstance:
     - target: {fileID: 6345565490418058746, guid: b13f9186e226be1488cbd5ecc1a99142,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13021,7 +13022,7 @@ PrefabInstance:
     - target: {fileID: 6830118710154982297, guid: c301870eac6aaba42a01c7816d7326f6,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
