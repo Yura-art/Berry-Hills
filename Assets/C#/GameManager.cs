@@ -89,9 +89,12 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void CerrarJuego()
+    public void SalirDelJuego()
     {
-        Debug.Log("Se cerro");
-        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
     }
 }
