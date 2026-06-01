@@ -1599,6 +1599,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1423624442816775716, guid: 92ae8c404866c4f46ad015212e20e225,
+        type: 3}
+      propertyPath: sembrar
+      value: 
+      objectReference: {fileID: 8300000, guid: 88b0a2fc23dc0d84089f1e10b424398f, type: 3}
     - target: {fileID: 7449242256519898108, guid: 92ae8c404866c4f46ad015212e20e225,
         type: 3}
       propertyPath: m_Name
