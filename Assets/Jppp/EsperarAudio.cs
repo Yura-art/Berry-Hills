@@ -4,9 +4,19 @@ using System.Collections;
 
 public class EsperarAudio : MonoBehaviour
 {
-    [SerializeField] AudioSource fuente;
-    [SerializeField] UnityEvent alTerminar;
-    [SerializeField] bool reproducirAlIniciar = true;
+    [SerializeField] private AudioSource fuente;
+
+    [Header("Eventos")]
+    [Tooltip("Se dispara justo cuando el audio comienza a sonar")]
+    [SerializeField] private UnityEvent alIniciar;
+
+    [Tooltip("Se dispara cuando el audio termina por completo")]
+    [SerializeField] private UnityEvent alTerminar;
+
+    [Header("Configuración")]
+    [SerializeField] private bool reproducirAlIniciar = true;
+
+    private Coroutine corrutinaAudio;
 
     private void Start()
     {
@@ -17,22 +27,43 @@ public class EsperarAudio : MonoBehaviour
         }
 
         if (reproducirAlIniciar)
+        {
             ReproducirYEsperar();
+        }
     }
 
     public void ReproducirYEsperar()
     {
-        StartCoroutine(Ejecutar());
+        // Si ya había un audio reproduciéndose desde este script, detenemos la corrutina anterior
+        if (corrutinaAudio != null)
+        {
+            StopCoroutine(corrutinaAudio);
+        }
+
+        corrutinaAudio = StartCoroutine(Ejecutar());
     }
 
     private IEnumerator Ejecutar()
     {
         Debug.Log($"[EsperarAudio] Reproduciendo '{fuente.clip?.name}'");
+
+        // 1. Invocamos los eventos de inicio (p. ej. bloquear movimiento)
+        alIniciar?.Invoke();
+
+        // 2. Reproducimos el sonido
         fuente.Play();
-        // Espera mientras se esté reproduciendo (más fiable que clip.length)
+
+        // 3. Esperamos 1 frame para asegurar que el motor de audio actualice 'isPlaying' a true
+        yield return null;
+
+        // 4. Esperamos mientras el audio se siga reproduciendo
         yield return new WaitWhile(() => fuente.isPlaying);
-        Debug.Log($"[EsperarAudio] Terminó '{fuente.clip?.name}' - invocando eventos");
+
+        Debug.Log($"[EsperarAudio] Terminó '{fuente.clip?.name}' - invocando eventos finales");
+
+        // 5. Invocamos los eventos de finalización (p. ej. desbloquear movimiento)
         alTerminar?.Invoke();
+
+        corrutinaAudio = null;
     }
 }
-
